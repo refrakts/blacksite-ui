@@ -1,0 +1,307 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "blacksite",
+  "homepage": "https://blacksite-ui.dev",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "Blacksite theme",
+      "description": "Palantir-inspired dark theme with cool grays, cyan accent and tactical status palette.",
+      "cssVars": {
+        "theme": {
+          "font-sans": "Inter, ui-sans-serif, system-ui, sans-serif",
+          "font-mono": "JetBrains Mono, ui-monospace, SFMono-Regular, monospace",
+          "radius": "4px"
+        },
+        "dark": {
+          "background": "222 28% 6%",
+          "background-elevated": "220 22% 9%",
+          "background-overlay": "218 18% 12%",
+          "foreground": "210 14% 92%",
+          "foreground-muted": "215 12% 65%",
+          "foreground-subtle": "218 10% 48%",
+          "card": "220 22% 9%",
+          "card-foreground": "210 14% 92%",
+          "popover": "220 22% 10%",
+          "popover-foreground": "210 14% 92%",
+          "border": "218 14% 18%",
+          "border-strong": "218 14% 26%",
+          "input": "218 14% 14%",
+          "ring": "174 72% 56%",
+          "primary": "174 72% 56%",
+          "primary-foreground": "220 28% 6%",
+          "secondary": "218 14% 16%",
+          "secondary-foreground": "210 14% 92%",
+          "muted": "218 14% 14%",
+          "muted-foreground": "215 12% 60%",
+          "accent": "218 14% 18%",
+          "accent-foreground": "210 14% 92%",
+          "success": "162 70% 48%",
+          "warning": "38 92% 58%",
+          "danger": "358 78% 60%",
+          "info": "212 90% 62%",
+          "gold": "42 78% 60%"
+        }
+      },
+      "files": []
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn() utility",
+      "description": "clsx + tailwind-merge helper.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Tactical button with primary, secondary, ghost, danger and tactical variants.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/button.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status badge with solid, soft and outline tones for tactical status states.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/badge.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Surface primitive used as the base for panels and stat cards.",
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/card.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Linear progress / integrity bar with tactical tone variants.",
+      "dependencies": ["@radix-ui/react-progress"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/progress.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Hairline divider with optional dashed/dotted variant.",
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/separator.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Bordered input with monospace + tactical-style focus ring.",
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/input.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Floating tooltip with mono caption styling.",
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/tooltip.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll area",
+      "description": "Custom scrollbar styled to match dark surfaces.",
+      "dependencies": ["@radix-ui/react-scroll-area"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/scroll-area.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Underline-style segmented tabs.",
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/tabs.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "panel",
+      "type": "registry:ui",
+      "title": "Panel",
+      "description": "Titled card panel with header bar, action slot and status indicator.",
+      "registryDependencies": ["card", "badge", "utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/panel.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:ui",
+      "title": "Status badge",
+      "description": "Compact monospace status pill (ACTIVE, HIGH, NEW, COMPROMISED…).",
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/status-badge.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:ui",
+      "title": "Stat card",
+      "description": "KPI card with title, value, status badge and integrity bar.",
+      "registryDependencies": ["card", "status-badge", "progress", "utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/stat-card.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "app-header",
+      "type": "registry:ui",
+      "title": "App header",
+      "description": "Top bar with title, status pill, region selector and actions.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "status-badge"],
+      "files": [
+        { "path": "registry/blacksite/ui/app-header.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "sidebar-rail",
+      "type": "registry:ui",
+      "title": "Sidebar rail",
+      "description": "Vertical icon navigation rail.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "tooltip"],
+      "files": [
+        { "path": "registry/blacksite/ui/sidebar-rail.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "data-list",
+      "type": "registry:ui",
+      "title": "Data list",
+      "description": "Compact list of label/value rows with optional status badges.",
+      "registryDependencies": ["utils", "status-badge"],
+      "files": [
+        { "path": "registry/blacksite/ui/data-list.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Inline keyboard key chip.",
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/kbd.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "metric",
+      "type": "registry:ui",
+      "title": "Metric",
+      "description": "Compact metric display with label, value and trend delta.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "registry/blacksite/ui/metric.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "line-chart",
+      "type": "registry:ui",
+      "title": "Line chart",
+      "description": "Threshold-aware line chart with tactical alert markers.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils", "panel"],
+      "files": [
+        { "path": "registry/blacksite/charts/line-chart.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:ui",
+      "title": "Bar chart",
+      "description": "Stacked / grouped bar chart with mono labels.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils", "panel"],
+      "files": [
+        { "path": "registry/blacksite/charts/bar-chart.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "gantt-timeline",
+      "type": "registry:ui",
+      "title": "Gantt timeline",
+      "description": "Compact timeline / Gantt chart with phase rows and status colors.",
+      "registryDependencies": ["utils", "panel"],
+      "files": [
+        { "path": "registry/blacksite/charts/gantt-timeline.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "tactical-map",
+      "type": "registry:ui",
+      "title": "Tactical map",
+      "description": "SVG-based tactical map canvas with markers, zones and integrity bar.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "status-badge", "panel"],
+      "files": [
+        { "path": "registry/blacksite/maps/tactical-map.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "dashboard-ops",
+      "type": "registry:block",
+      "title": "Ops dashboard block",
+      "description": "Full Birthday-Ops style dashboard composed from registry primitives.",
+      "registryDependencies": [
+        "app-header",
+        "sidebar-rail",
+        "panel",
+        "stat-card",
+        "status-badge",
+        "data-list",
+        "line-chart",
+        "gantt-timeline",
+        "tactical-map"
+      ],
+      "files": [
+        { "path": "registry/blacksite/blocks/dashboard-ops.tsx", "type": "registry:block" }
+      ]
+    }
+  ]
+}

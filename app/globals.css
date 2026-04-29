@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+/* ---------------------------------------------------------------------------
+ * Blacksite UI — Palantir-inspired design tokens
+ * Single dark-first theme. Light theme is provided as an opt-in fallback.
+ * -------------------------------------------------------------------------*/
+
+@theme {
+  --font-sans: "Inter", "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Inter Display", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+
+  --shadow-panel: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-glow-cyan: 0 0 0 1px rgba(94, 234, 212, 0.4), 0 0 12px -2px rgba(94, 234, 212, 0.35);
+}
+
+@layer base {
+  :root {
+    /* Surfaces — layered grays with a slight cool cast */
+    --background: 222 28% 6%;
+    --background-elevated: 220 22% 9%;
+    --background-overlay: 218 18% 12%;
+
+    --foreground: 210 14% 92%;
+    --foreground-muted: 215 12% 65%;
+    --foreground-subtle: 218 10% 48%;
+
+    --card: 220 22% 9%;
+    --card-foreground: 210 14% 92%;
+
+    --popover: 220 22% 10%;
+    --popover-foreground: 210 14% 92%;
+
+    --border: 218 14% 18%;
+    --border-strong: 218 14% 26%;
+    --input: 218 14% 14%;
+    --ring: 174 72% 56%;
+
+    /* Brand — cyan/teal */
+    --primary: 174 72% 56%;
+    --primary-foreground: 220 28% 6%;
+
+    --secondary: 218 14% 16%;
+    --secondary-foreground: 210 14% 92%;
+
+    --muted: 218 14% 14%;
+    --muted-foreground: 215 12% 60%;
+
+    --accent: 218 14% 18%;
+    --accent-foreground: 210 14% 92%;
+
+    /* Status colors */
+    --success: 162 70% 48%;
+    --success-foreground: 220 28% 6%;
+    --warning: 38 92% 58%;
+    --warning-foreground: 220 28% 6%;
+    --danger: 358 78% 60%;
+    --danger-foreground: 0 0% 100%;
+    --info: 212 90% 62%;
+    --info-foreground: 220 28% 6%;
+    --gold: 42 78% 60%;
+    --gold-foreground: 220 28% 6%;
+
+    /* Chart series (extends shadcn pattern) */
+    --chart-1: 174 72% 56%;
+    --chart-2: 212 90% 62%;
+    --chart-3: 42 78% 60%;
+    --chart-4: 320 70% 64%;
+    --chart-5: 162 70% 48%;
+
+    --radius: 4px;
+  }
+
+  /* Light theme fallback (optional opt-in) */
+  .light {
+    --background: 210 20% 98%;
+    --background-elevated: 0 0% 100%;
+    --background-overlay: 210 20% 96%;
+    --foreground: 222 28% 8%;
+    --foreground-muted: 220 12% 32%;
+    --foreground-subtle: 220 10% 45%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 28% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 28% 8%;
+    --border: 220 14% 88%;
+    --border-strong: 220 14% 78%;
+    --input: 220 14% 92%;
+    --ring: 174 72% 38%;
+    --primary: 174 72% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 222 28% 8%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 12% 36%;
+    --accent: 220 14% 92%;
+    --accent-foreground: 222 28% 8%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html,
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.35);
+    color: hsl(var(--foreground));
+  }
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-background-elevated: hsl(var(--background-elevated));
+  --color-background-overlay: hsl(var(--background-overlay));
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-muted: hsl(var(--foreground-muted));
+  --color-foreground-subtle: hsl(var(--foreground-subtle));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-border: hsl(var(--border));
+  --color-border-strong: hsl(var(--border-strong));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-danger: hsl(var(--danger));
+  --color-danger-foreground: hsl(var(--danger-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+  --color-gold: hsl(var(--gold));
+  --color-gold-foreground: hsl(var(--gold-foreground));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+}
+
+/* Utility classes — Palantir-style scanlines, grids, terminal cursor */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@utility bg-grid-fine {
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+@utility bg-scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    hsl(var(--foreground) / 0.02) 2px,
+    hsl(var(--foreground) / 0.02) 3px
+  );
+}
+
+@utility text-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+@utility text-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground-muted));
+}
