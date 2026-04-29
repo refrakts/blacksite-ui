@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Github, Terminal } from "lucide-react";
+import { ArrowRight, Github, Package, Terminal } from "lucide-react";
 
 import { Button } from "@/registry/blacksite/ui/button";
 import { Kbd } from "@/registry/blacksite/ui/kbd";
@@ -79,37 +79,57 @@ export default function Home() {
               {"\n"}npx shadcn@latest add{" "}
               <span className="text-primary">https://blacksite-ui.dev/r/stat-card.json</span>
               {"\n\n"}
-              <span className="text-foreground-subtle"># Add the full ops block</span>
+              <span className="text-foreground-subtle"># Drop in the theme tokens</span>
               {"\n"}npx shadcn@latest add{" "}
-              <span className="text-primary">https://blacksite-ui.dev/r/dashboard-ops.json</span>
+              <span className="text-primary">https://blacksite-ui.dev/r/theme.json</span>
             </pre>
           </Panel>
 
-          <Panel title="Theme" subtitle="Tokens" density="compact">
-            <pre className="text-mono text-[12px] leading-relaxed text-foreground bg-background-overlay rounded-sm p-3 border border-border-strong overflow-x-auto">
-              <span className="text-foreground-subtle">/* Drop into your globals.css */</span>
-              {"\n"}@import <span className="text-primary">"tailwindcss"</span>;{"\n"}
-              @import <span className="text-primary">"./blacksite-theme.css"</span>;{"\n\n"}
-              <span className="text-foreground-subtle">// 12-step palette, status colors,</span>
-              {"\n"}
-              <span className="text-foreground-subtle">// mono / display fonts, scanlines.</span>
-            </pre>
+          <Panel title="What you get" subtitle="Source, not a runtime" density="compact">
+            <ul className="text-sm text-foreground-muted space-y-1.5 list-disc pl-5">
+              <li>
+                Each component is copied into <code className="text-mono">@/components</code> in
+                your project — yours to edit.
+              </li>
+              <li>
+                No <code className="text-mono">blacksite-ui</code> npm package, no runtime
+                dependency, no version drift.
+              </li>
+              <li>Tailwind v4 tokens, Radix primitives, Recharts under the hood.</li>
+              <li>Works inside any existing shadcn project.</li>
+            </ul>
           </Panel>
         </section>
 
         <section className="mt-12">
-          <Panel title="Live demo" subtitle="Birthday Ops" status="active" closable>
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-sm text-foreground-muted max-w-xl">
-                See every component working together in a single Palantir-Foundry-style
-                operations dashboard.
-              </p>
-              <Button asChild variant="primary">
-                <Link href="/dashboard">
-                  Open dashboard
-                  <ArrowRight className="size-3.5" />
-                </Link>
-              </Button>
+          <Panel
+            title="Example composition"
+            subtitle="ops-dashboard"
+            density="compact"
+          >
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-1">
+                <p className="text-sm text-foreground">
+                  See every primitive working together in a single Foundry-style layout.
+                </p>
+                <p className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted">
+                  Installable as a registry block — copy + own it.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button asChild variant="tactical">
+                  <Link href="/preview/ops-dashboard">
+                    Preview
+                    <ArrowRight className="size-3.5" />
+                  </Link>
+                </Button>
+                <Button asChild variant="primary">
+                  <Link href="/docs">
+                    <Package className="size-3.5" />
+                    How to install
+                  </Link>
+                </Button>
+              </div>
             </div>
           </Panel>
         </section>
@@ -131,9 +151,7 @@ function SiteHeader() {
           <span className="text-mono text-[11px] uppercase tracking-[0.12em] text-foreground">
             Blacksite UI
           </span>
-          <StatusBadge status="active" pulse>
-            v0.1
-          </StatusBadge>
+          <StatusBadge status="active">v0.1.0</StatusBadge>
         </Link>
         <nav className="flex items-center gap-1 ml-2">
           <Link
@@ -143,10 +161,10 @@ function SiteHeader() {
             Components
           </Link>
           <Link
-            href="/dashboard"
+            href="/preview/ops-dashboard"
             className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
           >
-            Dashboard
+            Examples
           </Link>
           <Link
             href="/docs"
@@ -181,11 +199,9 @@ function Hero() {
       <div className="absolute inset-0 bg-scanlines pointer-events-none" />
       <div className="relative px-8 py-12">
         <div className="flex items-center gap-2">
-          <StatusBadge status="active" pulse>
-            Operational
-          </StatusBadge>
+          <StatusBadge status="active">Component library</StatusBadge>
           <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-subtle">
-            Region · ENCONTIMSSORY
+            v0.1.0 · 24 items · shadcn registry
           </span>
         </div>
         <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
@@ -194,8 +210,9 @@ function Hero() {
           shipped as <span className="text-primary">ShadCN-compatible</span> primitives.
         </h1>
         <p className="mt-4 max-w-2xl text-foreground-muted">
-          Tactical dark UI, monospace labels, status palettes, charts and maps — all installable
-          via the shadcn CLI and built on Tailwind v4.
+          Tactical dark UI, monospace labels, status palettes, charts and maps — installable into
+          your own codebase via the shadcn CLI. No runtime library. Tailwind v4 tokens. Radix
+          primitives.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-2">
           <Button asChild variant="primary">
@@ -205,9 +222,9 @@ function Hero() {
             </a>
           </Button>
           <Button asChild variant="tactical">
-            <a href="/dashboard">
+            <a href="/docs">
               <Terminal className="size-3.5" />
-              Live demo
+              Install guide
             </a>
           </Button>
         </div>
@@ -221,7 +238,7 @@ function SiteFooter() {
     <footer className="mt-12 border-t border-border bg-background-elevated">
       <div className="mx-auto max-w-6xl flex items-center justify-between px-6 h-10 text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-subtle">
         <span>Blacksite UI — © {new Date().getFullYear()}</span>
-        <span>Palantir / Foundry inspired · MIT</span>
+        <span>Component registry · MIT</span>
       </div>
     </footer>
   );

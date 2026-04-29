@@ -1,84 +1,102 @@
 # Blacksite UI
 
-A Palantir-inspired component registry, shipped as **ShadCN-compatible** primitives.
+A Palantir-inspired **component library**, shipped as a ShadCN-compatible registry.
 
-Tactical dark UI, monospace labels, status palettes, charts and maps — all installable
-via the `shadcn` CLI and built on Tailwind v4.
+You don't install a package — you point the shadcn CLI at a JSON manifest and it
+copies the source for each component into your own codebase. The library lives
+in your project; there's no runtime to update, nothing to lock to.
 
-```
-npx shadcn@latest add https://blacksite-ui.dev/r/dashboard-ops.json
+```bash
+# Drop in the theme tokens
+npx shadcn@latest add https://blacksite-ui.dev/r/theme.json
+
+# Pick what you actually need
+npx shadcn@latest add https://blacksite-ui.dev/r/stat-card.json
+npx shadcn@latest add https://blacksite-ui.dev/r/tactical-map.json
 ```
 
 > Inspired by Palantir Foundry / Apollo / Gotham. Not affiliated with Palantir.
 
-## What's in the box
+## What this repo is
+
+This repo is **two things stacked into one project**:
+
+1. **The registry** — `registry/blacksite/`, the actual component sources. This
+   is the library.
+2. **A thin docs/preview site** — a Next.js app under `app/` whose only jobs are
+   (a) hosting the generated registry JSON at `/r/*.json`, and (b) showing what
+   the components look like. It is _not_ a product or app you're meant to use.
+
+If you only care about the components, ignore everything outside
+`registry/blacksite/`.
+
+## Registry contents (24 items)
 
 ### Primitives
-- `button`, `badge`, `card`, `progress`, `separator`, `input`, `tooltip`, `tabs`, `scroll-area`, `kbd`
+`button` · `badge` · `card` · `progress` · `separator` · `input` ·
+`tooltip` · `tabs` · `scroll-area` · `kbd`
 
-### Tactical components
-- `status-badge` — `ACTIVE`, `IDLE`, `NEW`, `HIGH`, `CRITICAL`, `COMPROMISED`, `NOMINAL`, `WARNING`, `SECURED`
-- `panel` — titled card with header bar, status pill, action slot, close button
-- `stat-card` — KPI card with title, value, status badge and integrity bar
-- `metric` — compact label / value / delta
-- `data-list` — label/value rows with status badges
-- `app-header` — top bar with brand, title, region selector, fake window controls
-- `sidebar-rail` — vertical icon nav with active indicator and badge
+### Tactical composites
+`status-badge` · `panel` · `stat-card` · `metric` · `data-list` ·
+`app-header` · `sidebar-rail`
 
 ### Charts
-- `line-chart` — threshold-aware line chart (recharts under the hood)
-- `bar-chart` — stacked / grouped bar chart
-- `gantt-timeline` — phase rows with status colors and a "now" marker
+`line-chart` (with thresholds) · `bar-chart` · `gantt-timeline`
 
 ### Maps
-- `tactical-map` — SVG canvas with markers (pin / triangle / square), polygon zones, grid background, zoom controls
+`tactical-map` (SVG canvas — markers, polygon zones, grid, controls)
+
+### Theme + utilities
+`theme` (HSL token set + JetBrains Mono / Inter) · `utils` (`cn()` helper)
 
 ### Blocks
-- `dashboard-ops` — the full Birthday-Ops style dashboard, composed from registry primitives
+`dashboard-ops` — a single Foundry-style composition that uses every primitive
+above. Useful as a starting point or reference; not the point of the library.
+
+## Authoring conventions
+
+- All sources live in `registry/blacksite/{ui,charts,maps,blocks}/`.
+- Every component imports from `@/registry/blacksite/...` so the same source
+  works in this repo and after install via the shadcn CLI.
+- Status surfaces (badges, indicators, dots) flow through the same `StatusBadge`
+  status keys: `active | idle | offline | new | high | critical | compromised
+  | nominal | warning | secured`.
+- Mono is reserved for labels / axis ticks / kbd / codes. Sans for body + values.
+- Charts and maps are pure React; no theme provider, no global state.
 
 ## Local development
 
 ```bash
 pnpm install
-pnpm dev                  # docs site at http://localhost:3000
-pnpm registry:build       # generate public/r/*.json
+pnpm dev                  # docs/preview site at http://localhost:3000
+pnpm registry:build       # regenerate public/r/*.json
 pnpm typecheck
+pnpm build                # registry build + Next.js production build
 ```
 
-The registry source lives under `registry/blacksite/`:
+`scripts/build-registry.ts` reads `registry.json`, inlines every referenced
+file, and writes one `public/r/<name>.json` per item plus an `index.json`. That
+is the format upstream `npx shadcn@latest add <url>` consumes.
 
-```
-registry/blacksite/
-├── ui/        # primitives + tactical composites
-├── charts/    # line, bar, gantt
-├── maps/      # tactical-map
-└── blocks/    # full dashboard composition
-```
-
-`scripts/build-registry.ts` reads `registry.json`, inlines the source of every file
-referenced by each item, and writes `public/r/<name>.json` (plus `index.json`).
-That's the format the upstream `npx shadcn@latest add <url>` CLI consumes.
+`public/r/*.json` is gitignored — always regenerated by `pnpm registry:build`.
 
 ## Design tokens
 
-Tokens are declared as HSL CSS variables in `app/globals.css` and re-published as a
-`registry:theme` item (`public/r/theme.json`). The palette is dark-first and tuned
-for tactical surfaces:
+Tokens are HSL CSS variables in `app/globals.css` and re-published as a
+`registry:theme` item. Dark-first.
 
-| Role            | Token                | Notes                                  |
-| --------------- | -------------------- | -------------------------------------- |
-| Background      | `--background`       | `222 28% 6%`                           |
-| Card surface    | `--card`             | `220 22% 9%`                           |
-| Border          | `--border`           | `218 14% 18%`                          |
-| Foreground      | `--foreground`       | `210 14% 92%`                          |
-| Primary (cyan)  | `--primary`          | `174 72% 56%`                          |
-| Success (teal)  | `--success`          | `162 70% 48%`                          |
-| Warning (amber) | `--warning`          | `38 92% 58%`                           |
-| Danger (red)    | `--danger`           | `358 78% 60%`                          |
-| Info (blue)     | `--info`             | `212 90% 62%`                          |
-| Gold            | `--gold`             | `42 78% 60%` (signage / brand mark)    |
-
-Mono labels use **JetBrains Mono**, body uses **Inter**.
+| Role            | Token              | Value             |
+| --------------- | ------------------ | ----------------- |
+| Background      | `--background`     | `222 28% 6%`      |
+| Card surface    | `--card`           | `220 22% 9%`      |
+| Border          | `--border`         | `218 14% 18%`     |
+| Foreground      | `--foreground`     | `210 14% 92%`     |
+| Primary (cyan)  | `--primary`        | `174 72% 56%`     |
+| Success (teal)  | `--success`        | `162 70% 48%`     |
+| Warning (amber) | `--warning`        | `38 92% 58%`      |
+| Danger (red)    | `--danger`         | `358 78% 60%`     |
+| Info (blue)     | `--info`           | `212 90% 62%`     |
+| Gold            | `--gold`           | `42 78% 60%`      |
 
 ## License
 
