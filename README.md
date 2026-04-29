@@ -69,10 +69,21 @@ above. Useful as a starting point or reference; not the point of the library.
 ```bash
 pnpm install
 pnpm dev                  # docs/preview site at http://localhost:3000
+pnpm storybook            # component playground at http://localhost:6006
 pnpm registry:build       # regenerate public/r/*.json
 pnpm typecheck
 pnpm build                # registry build + Next.js production build
+pnpm build-storybook      # static Storybook into public/storybook/
 ```
+
+Stories are colocated next to each component as `*.stories.tsx`. They're never
+listed in `registry.json`, so the shadcn CLI never copies them into consumer
+projects — they're a dev-only artefact.
+
+In production, `pnpm build && pnpm build-storybook` produces a single Next.js
+deployment where the docs site is at `/` and Storybook is served at
+`/storybook/`. During dev they're separate processes (`pnpm dev` for the docs
+site, `pnpm storybook` for the components in isolation).
 
 `scripts/build-registry.ts` reads `registry.json`, inlines every referenced
 file, and writes one `public/r/<name>.json` per item plus an `index.json`. That

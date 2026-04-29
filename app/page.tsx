@@ -6,40 +6,42 @@ import { Kbd } from "@/registry/blacksite/ui/kbd";
 import { Panel } from "@/registry/blacksite/ui/panel";
 import { StatusBadge } from "@/registry/blacksite/ui/status-badge";
 
+const STORYBOOK_BASE = "/storybook/index.html?path=/docs";
+
 const sections = [
   {
     title: "Primitives",
     items: [
-      { name: "Button", href: "/components#button" },
-      { name: "Badge", href: "/components#badge" },
-      { name: "Card", href: "/components#card" },
-      { name: "Progress", href: "/components#progress" },
-      { name: "Separator", href: "/components#separator" },
-      { name: "Input", href: "/components#input" },
-      { name: "Tooltip", href: "/components#tooltip" },
-      { name: "Tabs", href: "/components#tabs" },
+      { name: "Button", href: `${STORYBOOK_BASE}/primitives-button--docs` },
+      { name: "Badge", href: `${STORYBOOK_BASE}/primitives-badge--docs` },
+      { name: "Card", href: `${STORYBOOK_BASE}/primitives-card--docs` },
+      { name: "Progress", href: `${STORYBOOK_BASE}/primitives-progress--docs` },
+      { name: "Separator", href: `${STORYBOOK_BASE}/primitives-separator--docs` },
+      { name: "Input", href: `${STORYBOOK_BASE}/primitives-input--docs` },
+      { name: "Tooltip", href: `${STORYBOOK_BASE}/primitives-tooltip--docs` },
+      { name: "Tabs", href: `${STORYBOOK_BASE}/primitives-tabs--docs` },
     ],
   },
   {
     title: "Tactical",
     items: [
-      { name: "Status badge", href: "/components#status-badge" },
-      { name: "Panel", href: "/components#panel" },
-      { name: "Stat card", href: "/components#stat-card" },
-      { name: "Metric", href: "/components#metric" },
-      { name: "Data list", href: "/components#data-list" },
-      { name: "App header", href: "/components#app-header" },
-      { name: "Sidebar rail", href: "/components#sidebar-rail" },
-      { name: "Kbd", href: "/components#kbd" },
+      { name: "Status badge", href: `${STORYBOOK_BASE}/tactical-status-badge--docs` },
+      { name: "Panel", href: `${STORYBOOK_BASE}/tactical-panel--docs` },
+      { name: "Stat card", href: `${STORYBOOK_BASE}/tactical-stat-card--docs` },
+      { name: "Metric", href: `${STORYBOOK_BASE}/tactical-metric--docs` },
+      { name: "Data list", href: `${STORYBOOK_BASE}/tactical-data-list--docs` },
+      { name: "App header", href: `${STORYBOOK_BASE}/tactical-app-header--docs` },
+      { name: "Sidebar rail", href: `${STORYBOOK_BASE}/tactical-sidebar-rail--docs` },
+      { name: "Kbd", href: `${STORYBOOK_BASE}/primitives-kbd--docs` },
     ],
   },
   {
     title: "Charts & Maps",
     items: [
-      { name: "Line chart", href: "/components#line-chart" },
-      { name: "Bar chart", href: "/components#bar-chart" },
-      { name: "Gantt timeline", href: "/components#gantt-timeline" },
-      { name: "Tactical map", href: "/components#tactical-map" },
+      { name: "Line chart", href: `${STORYBOOK_BASE}/charts-line-chart--docs` },
+      { name: "Bar chart", href: `${STORYBOOK_BASE}/charts-bar-chart--docs` },
+      { name: "Gantt timeline", href: `${STORYBOOK_BASE}/charts-gantt-timeline--docs` },
+      { name: "Tactical map", href: `${STORYBOOK_BASE}/maps-tactical-map--docs` },
     ],
   },
 ];
@@ -58,13 +60,13 @@ export default function Home() {
               <ul className="flex flex-col gap-1">
                 {section.items.map((item) => (
                   <li key={item.name}>
-                    <Link
+                    <a
                       href={item.href}
                       className="flex items-center justify-between gap-2 px-1.5 py-1 rounded-sm text-sm text-foreground-muted hover:bg-accent hover:text-foreground"
                     >
                       <span>{item.name}</span>
                       <ArrowRight className="size-3 text-foreground-subtle" />
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -154,12 +156,12 @@ function SiteHeader() {
           <StatusBadge status="active">v0.1.0</StatusBadge>
         </Link>
         <nav className="flex items-center gap-1 ml-2">
-          <Link
-            href="/components"
+          <a
+            href="/storybook/index.html"
             className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
           >
-            Components
-          </Link>
+            Storybook
+          </a>
           <Link
             href="/preview/ops-dashboard"
             className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
@@ -216,8 +218,8 @@ function Hero() {
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-2">
           <Button asChild variant="primary">
-            <a href="/components">
-              Browse components
+            <a href="/storybook/index.html">
+              Open Storybook
               <ArrowRight className="size-3.5" />
             </a>
           </Button>
