@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "blacksite",
-  "homepage": "https://blacksite-ui.dev",
+  "homepage": "https://blacksite.sh",
   "items": [
     {
       "name": "theme",

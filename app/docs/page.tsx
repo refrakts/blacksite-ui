@@ -38,7 +38,7 @@ export default function DocsPage() {
         <Panel title="02" subtitle="Install the Blacksite theme" density="compact">
           <pre className="text-mono text-[12px] leading-relaxed bg-background-overlay rounded-sm p-3 border border-border-strong overflow-x-auto">
             npx shadcn@latest add{" "}
-            <span className="text-primary">https://blacksite-ui.dev/r/theme.json</span>
+            <span className="text-primary">https://blacksite.sh/r/theme.json</span>
           </pre>
           <p className="text-sm text-foreground-muted mt-2">
             This drops Palantir-inspired CSS variables, font families and status colors into your
@@ -50,13 +50,13 @@ export default function DocsPage() {
           <pre className="text-mono text-[12px] leading-relaxed bg-background-overlay rounded-sm p-3 border border-border-strong overflow-x-auto">
             <span className="text-foreground-subtle"># Single component</span>
             {"\n"}npx shadcn@latest add{" "}
-            <span className="text-primary">https://blacksite-ui.dev/r/stat-card.json</span>
+            <span className="text-primary">https://blacksite.sh/r/stat-card.json</span>
             {"\n\n"}
             <span className="text-foreground-subtle">
               # The full Birthday-Ops dashboard block
             </span>
             {"\n"}npx shadcn@latest add{" "}
-            <span className="text-primary">https://blacksite-ui.dev/r/dashboard-ops.json</span>
+            <span className="text-primary">https://blacksite.sh/r/dashboard-ops.json</span>
           </pre>
         </Panel>
 
