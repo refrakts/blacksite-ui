@@ -31,8 +31,12 @@ export interface MapZone {
 interface TacticalMapProps extends React.HTMLAttributes<HTMLDivElement> {
   markers?: MapMarker[];
   zones?: MapZone[];
-  /** Aspect ratio, e.g. "4 / 3" or "16 / 9". */
-  aspectRatio?: string;
+  /**
+   * Aspect ratio, e.g. "4 / 3" or "16 / 9". Pass `null` (or omit) to let the
+   * map fill its parent — useful when the map is inside a flex container that
+   * already constrains height.
+   */
+  aspectRatio?: string | null;
   /** Show the zoom controls overlay. */
   controls?: boolean;
   /** Background grid type. */
@@ -74,7 +78,7 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
           grid === "coarse" && "bg-grid",
           className,
         )}
-        style={{ aspectRatio }}
+        style={aspectRatio ? { aspectRatio } : undefined}
         {...props}
       >
         {/* Subtle radial gradient lighting */}
@@ -83,7 +87,7 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at 30% 30%, hsl(var(--primary) / 0.08), transparent 60%)",
+              "radial-gradient(ellipse at 30% 30%, hsl(var(--primary) / 0.18), transparent 65%), radial-gradient(ellipse at 70% 80%, hsl(var(--info) / 0.1), transparent 60%)",
           }}
         />
 

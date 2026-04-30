@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Full Birthday-Ops style composition built from the registry primitives. Installable as `dashboard-ops` via the shadcn CLI.",
+          "Full ops-dashboard composition built from the registry primitives. Installable as `dashboard-ops` via the shadcn CLI.",
       },
     },
   },

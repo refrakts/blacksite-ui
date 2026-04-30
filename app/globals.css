@@ -165,16 +165,16 @@
 /* Utility classes — Palantir-style scanlines, grids, terminal cursor */
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    linear-gradient(to right, hsl(var(--border-strong) / 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border-strong) / 0.6) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 @utility bg-grid-fine {
   background-image:
-    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
-  background-size: 8px 8px;
+    linear-gradient(to right, hsl(var(--border-strong) / 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border-strong) / 0.5) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
 @utility bg-scanlines {
