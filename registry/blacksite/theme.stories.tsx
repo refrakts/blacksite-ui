@@ -78,7 +78,7 @@ export const Typography: Story = {
           Display / sans
         </h3>
         <div className="space-y-1">
-          <p className="text-4xl font-semibold tracking-tight">BIRTHDAY OPS</p>
+          <p className="text-4xl font-semibold tracking-tight">SENTINEL OPS</p>
           <p className="text-2xl font-semibold tracking-tight">Operation FOUNDRY</p>
           <p className="text-base">Body text — Inter, regular weight.</p>
           <p className="text-sm text-foreground-muted">Muted text — for secondary copy.</p>
@@ -89,9 +89,9 @@ export const Typography: Story = {
           Mono / labels
         </h3>
         <div className="space-y-1">
-          <p className="text-mono text-[11px] uppercase tracking-[0.1em]">CAKE DEPLOYMENT STATUS</p>
+          <p className="text-mono text-[11px] uppercase tracking-[0.1em]">ASSET DEPLOYMENT STATUS</p>
           <p className="text-mono text-[11px] uppercase tracking-[0.1em] text-foreground-muted">
-            BACKYARD — BACKYARD
+            SECTOR C-3 — AOR
           </p>
           <p className="text-mono text-[12px]">GRID-1734-A2 · 04:21Z</p>
         </div>

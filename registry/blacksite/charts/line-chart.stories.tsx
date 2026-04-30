@@ -22,7 +22,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const sugarSeries = [
+const loadSeries = [
   { x: "0", series_a: 0.5 },
   { x: "20", series_a: 1.8 },
   { x: "40", series_a: 4.2 },
@@ -37,14 +37,14 @@ const telemetryData = Array.from({ length: 14 }, (_, i) => ({
   secondary: Math.round(30 + Math.cos(i / 3) * 18 + i * 0.8),
 }));
 
-export const SugarVsVolatility: Story = {
+export const ThroughputVsLatency: Story = {
   args: {
-    data: sugarSeries,
+    data: loadSeries,
     xKey: "x",
-    xLabel: "Sugar intake",
-    yLabel: "Behavioral volatility",
+    xLabel: "Throughput (req/s)",
+    yLabel: "P99 latency (ms)",
     series: [
-      { key: "series_a", label: "Volatility", color: "var(--color-chart-1)" },
+      { key: "series_a", label: "Latency", color: "var(--color-chart-1)" },
     ],
     thresholds: [{ value: 15, label: "Alert threshold", tone: "danger" }],
     height: 220,

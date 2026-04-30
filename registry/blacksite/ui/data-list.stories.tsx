@@ -29,12 +29,12 @@ const subsystemItems = [
 ];
 
 const integrityItems = [
-  { id: "1", label: "Bounce castle", status: "active" as const },
-  { id: "2", label: "Cake table", status: "active" as const },
-  { id: "3", label: "Piñata station", status: "active" as const },
-  { id: "4", label: "Balloon rigging", status: "active" as const },
-  { id: "5", label: "Music zone", status: "active" as const },
-  { id: "6", label: "Guest perimeter", status: "active" as const },
+  { id: "1", label: "Staging area", status: "active" as const },
+  { id: "2", label: "Forward base", status: "active" as const },
+  { id: "3", label: "Sensor array", status: "active" as const },
+  { id: "4", label: "Comms rigging", status: "active" as const },
+  { id: "5", label: "Comms zone", status: "active" as const },
+  { id: "6", label: "Outer perimeter", status: "active" as const },
 ];
 
 export const Subsystems: Story = {
