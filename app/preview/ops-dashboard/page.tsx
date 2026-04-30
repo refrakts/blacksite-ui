@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function OpsDashboardPreviewPage() {
   return (
-    <div className="relative">
+    <div className="relative h-svh">
       <Link
         href="/"
         className="fixed top-3 left-3 z-50 inline-flex items-center gap-1.5 rounded-sm border border-border bg-background-elevated/80 px-2 py-1 text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted hover:text-foreground hover:border-border-strong backdrop-blur-sm"

@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 
 import { AppHeader } from "@/registry/blacksite/ui/app-header";
-import { DataList } from "@/registry/blacksite/ui/data-list";
 import { Panel } from "@/registry/blacksite/ui/panel";
 import { SidebarRail, type SidebarRailItem } from "@/registry/blacksite/ui/sidebar-rail";
 import { StatCard } from "@/registry/blacksite/ui/stat-card";
@@ -103,7 +102,7 @@ function DashboardOps({ className, ...props }: DashboardOpsProps) {
   return (
     <div
       className={
-        "flex h-full min-h-svh flex-col bg-background text-foreground " + (className ?? "")
+        "flex h-svh flex-col overflow-hidden bg-background text-foreground " + (className ?? "")
       }
       {...props}
     >
@@ -191,7 +190,7 @@ function DashboardOps({ className, ...props }: DashboardOpsProps) {
               status="active"
               bleed
             >
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full min-h-0">
                 <div className="flex items-center gap-2 p-2 border-b border-border">
                   <button className="text-mono text-[10px] uppercase tracking-[0.08em] px-2 h-6 rounded-sm border border-border hover:border-border-strong">
                     L1 / Plan
@@ -203,24 +202,31 @@ function DashboardOps({ className, ...props }: DashboardOpsProps) {
                     RFP
                   </button>
                 </div>
-                <div className="flex-1 p-2">
+                <div className="flex-1 min-h-0 p-2">
                   <TacticalMap
-                    aspectRatio="16 / 10"
                     grid="fine"
                     markers={mapMarkers}
                     zones={mapZones}
+                    aspectRatio={null}
                     className="h-full"
                   />
                 </div>
-                <div className="border-t border-border p-2 grid grid-cols-2 gap-x-4 gap-y-1">
-                  <DataList items={integrityRows} density="compact" />
-                  <div className="flex items-end justify-end">
-                    <div className="flex items-center gap-2">
-                      <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted">
-                        Integrity
-                      </span>
-                      <StatusBadge status="compromised">COMPROMISED (35%)</StatusBadge>
-                    </div>
+                <div className="border-t border-border p-2 flex items-center justify-between gap-3">
+                  <div className="grid grid-cols-3 gap-x-4 gap-y-0.5 flex-1 min-w-0">
+                    {integrityRows.map((row) => (
+                      <div key={row.id} className="flex items-center gap-1.5 min-w-0">
+                        <span className="size-1.5 rounded-full bg-success shrink-0" />
+                        <span className="text-mono text-[10px] uppercase tracking-[0.06em] text-foreground-muted truncate">
+                          {row.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted">
+                      Integrity
+                    </span>
+                    <StatusBadge status="compromised">COMPROMISED (35%)</StatusBadge>
                   </div>
                 </div>
               </div>
