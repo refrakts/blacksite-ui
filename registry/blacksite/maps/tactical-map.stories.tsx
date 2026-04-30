@@ -56,14 +56,14 @@ export const SiteAlpha: Story = {
   },
 };
 
-export const Backyard: Story = {
+export const SectorC3: Story = {
   args: {
     aspectRatio: "4 / 3",
     grid: "fine",
     zones: [
       {
-        id: "bounce",
-        label: "Bounce castle LZ",
+        id: "lz",
+        label: "Forward LZ",
         points: [
           [0.18, 0.32],
           [0.4, 0.28],
@@ -75,7 +75,7 @@ export const Backyard: Story = {
       },
       {
         id: "perimeter",
-        label: "Cake table perimeter",
+        label: "Asset perimeter",
         points: [
           [0.42, 0.55],
           [0.66, 0.55],
@@ -87,16 +87,16 @@ export const Backyard: Story = {
       },
     ],
     markers: [
-      { id: "extract-1", label: "Parent extraction point", x: 0.66, y: 0.32, tone: "info" },
+      { id: "extract-1", label: "Operator extraction point", x: 0.66, y: 0.32, tone: "info" },
       {
         id: "extract-2",
-        label: "Parent extraction point",
+        label: "Operator extraction point",
         x: 0.34,
         y: 0.74,
         tone: "warning",
         shape: "triangle",
       },
-      { id: "cake", label: "Cake table perimeter", x: 0.54, y: 0.66, tone: "gold" },
+      { id: "asset", label: "Asset perimeter", x: 0.54, y: 0.66, tone: "gold" },
     ],
   },
 };

@@ -8,7 +8,7 @@ const meta = {
   component: StatCard,
   tags: ["autodocs"],
   args: {
-    label: "Cake deployment status",
+    label: "Asset deployment status",
     value: "ACTIVE",
     valueTone: "success",
     status: "active",
@@ -40,10 +40,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Active: Story = {};
 
-export const HighChaos: Story = {
+export const HighRisk: Story = {
   args: {
-    label: "Guest threat assessment",
-    value: "12 toddlers — HIGH CHAOS RISK",
+    label: "Contact threat assessment",
+    value: "12 contacts — HIGH RISK",
     valueTone: "warning",
     status: "high",
     statusLabel: "HIGH",
@@ -54,7 +54,7 @@ export const HighChaos: Story = {
 
 export const Compromised: Story = {
   args: {
-    label: "Piñata integrity",
+    label: "Asset integrity",
     value: "COMPROMISED (35%)",
     valueTone: "danger",
     status: "new",
@@ -70,7 +70,7 @@ export const Row: Story = {
   render: () => (
     <div className="grid grid-cols-4 gap-3 w-[1080px]">
       <StatCard
-        label="Cake deployment"
+        label="Asset deployment"
         value="ACTIVE"
         valueTone="success"
         status="active"
@@ -88,7 +88,7 @@ export const Row: Story = {
       />
       <StatCard
         label="Threat assessment"
-        value="HIGH CHAOS"
+        value="HIGH RISK"
         valueTone="warning"
         status="high"
         statusLabel="HIGH"

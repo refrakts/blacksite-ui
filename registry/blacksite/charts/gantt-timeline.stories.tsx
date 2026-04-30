@@ -40,15 +40,15 @@ export const Mission: Story = {
   },
 };
 
-export const BirthdayOps: Story = {
+export const Patrol: Story = {
   args: {
     columns: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     tasks: [
-      { id: "arrival", label: "Arrival phase", start: 0, end: 1.5, tone: "primary" },
-      { id: "cake-1", label: "Cake cutting op", start: 0.6, end: 2.2, tone: "primary" },
-      { id: "cake-2", label: "Cake cutting op", start: 2, end: 3.6, tone: "primary" },
-      { id: "pinata", label: "Piñata strike", start: 3.5, end: 4.6, tone: "warning" },
-      { id: "meltdown", label: "Meltdown containment", start: 4.4, end: 6, tone: "warning" },
+      { id: "insertion", label: "Insertion", start: 0, end: 1.5, tone: "primary" },
+      { id: "sweep-1", label: "Patrol sweep", start: 0.6, end: 2.2, tone: "primary" },
+      { id: "sweep-2", label: "Patrol sweep", start: 2, end: 3.6, tone: "primary" },
+      { id: "strike", label: "Strike package", start: 3.5, end: 4.6, tone: "warning" },
+      { id: "exfil", label: "Exfil response", start: 4.4, end: 6, tone: "warning" },
     ],
     nowAt: 4.2,
     rowHeight: 28,
