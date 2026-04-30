@@ -1,0 +1,15 @@
+/* Storybook-only fonts (Next.js handles them in the app via next/font). */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+html,
+body,
+#storybook-root {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+}
+
+/* Give every story a little breathing room and a tactical surface. */
+.sb-show-main.sb-main-padded {
+  padding: 1.5rem;
+}
