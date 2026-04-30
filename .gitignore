@@ -15,7 +15,6 @@ public/r/*.json
 
 # storybook
 storybook-static/
-public/storybook/
 
 # env
 .env

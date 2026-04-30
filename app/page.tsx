@@ -6,7 +6,8 @@ import { Kbd } from "@/registry/blacksite/ui/kbd";
 import { Panel } from "@/registry/blacksite/ui/panel";
 import { StatusBadge } from "@/registry/blacksite/ui/status-badge";
 
-const STORYBOOK_BASE = "/storybook/index.html?path=/docs";
+const STORYBOOK_URL = process.env.NEXT_PUBLIC_STORYBOOK_URL ?? "https://storybook.blacksite.sh";
+const STORYBOOK_BASE = `${STORYBOOK_URL}/?path=/docs`;
 
 const sections = [
   {
@@ -62,6 +63,8 @@ export default function Home() {
                   <li key={item.name}>
                     <a
                       href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
                       className="flex items-center justify-between gap-2 px-1.5 py-1 rounded-sm text-sm text-foreground-muted hover:bg-accent hover:text-foreground"
                     >
                       <span>{item.name}</span>
@@ -157,7 +160,9 @@ function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-1 ml-2">
           <a
-            href="/storybook/index.html"
+            href={STORYBOOK_URL}
+            target="_blank"
+            rel="noreferrer"
             className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
           >
             Storybook
@@ -218,7 +223,7 @@ function Hero() {
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-2">
           <Button asChild variant="primary">
-            <a href="/storybook/index.html">
+            <a href={STORYBOOK_URL} target="_blank" rel="noreferrer">
               Open Storybook
               <ArrowRight className="size-3.5" />
             </a>

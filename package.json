@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "registry:build": "tsx scripts/build-registry.ts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o public/storybook",
+    "build-storybook": "storybook build -o storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx,json,css}\""
   },
   "dependencies": {

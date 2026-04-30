@@ -80,10 +80,11 @@ Stories are colocated next to each component as `*.stories.tsx`. They're never
 listed in `registry.json`, so the shadcn CLI never copies them into consumer
 projects — they're a dev-only artefact.
 
-In production, `pnpm build && pnpm build-storybook` produces a single Next.js
-deployment where the docs site is at `/` and Storybook is served at
-`/storybook/`. During dev they're separate processes (`pnpm dev` for the docs
-site, `pnpm storybook` for the components in isolation).
+In production we deploy as **two Vercel projects** off the same repo —
+`blacksite.sh` for the Next.js docs and `storybook.blacksite.sh` for the
+Storybook static build. The docs site discovers Storybook through the
+`NEXT_PUBLIC_STORYBOOK_URL` env var, so the two are loosely coupled. See
+[DEPLOY.md](./DEPLOY.md) for the Vercel UI walkthrough and DNS records.
 
 `scripts/build-registry.ts` reads `registry.json`, inlines every referenced
 file, and writes one `public/r/<name>.json` per item plus an `index.json`. That
