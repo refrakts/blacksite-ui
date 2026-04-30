@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Blacksite UI — Palantir-inspired components",
   description:
     "A ShadCN-style component registry built around Palantir's tactical-dashboard design language.",
-  metadataBase: new URL("https://blacksite-ui.dev"),
+  metadataBase: new URL("https://blacksite.sh"),
   openGraph: {
     title: "Blacksite UI",
     description: "Palantir-inspired component registry",

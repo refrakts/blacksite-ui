@@ -82,11 +82,11 @@ export default function Home() {
             <pre className="text-mono text-[12px] leading-relaxed text-foreground bg-background-overlay rounded-sm p-3 border border-border-strong overflow-x-auto">
               <span className="text-foreground-subtle"># Add a single component</span>
               {"\n"}npx shadcn@latest add{" "}
-              <span className="text-primary">https://blacksite-ui.dev/r/stat-card.json</span>
+              <span className="text-primary">https://blacksite.sh/r/stat-card.json</span>
               {"\n\n"}
               <span className="text-foreground-subtle"># Drop in the theme tokens</span>
               {"\n"}npx shadcn@latest add{" "}
-              <span className="text-primary">https://blacksite-ui.dev/r/theme.json</span>
+              <span className="text-primary">https://blacksite.sh/r/theme.json</span>
             </pre>
           </Panel>
 

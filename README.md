@@ -8,11 +8,11 @@ in your project; there's no runtime to update, nothing to lock to.
 
 ```bash
 # Drop in the theme tokens
-npx shadcn@latest add https://blacksite-ui.dev/r/theme.json
+npx shadcn@latest add https://blacksite.sh/r/theme.json
 
 # Pick what you actually need
-npx shadcn@latest add https://blacksite-ui.dev/r/stat-card.json
-npx shadcn@latest add https://blacksite-ui.dev/r/tactical-map.json
+npx shadcn@latest add https://blacksite.sh/r/stat-card.json
+npx shadcn@latest add https://blacksite.sh/r/tactical-map.json
 ```
 
 > Inspired by Palantir Foundry / Apollo / Gotham. Not affiliated with Palantir.
