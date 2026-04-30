@@ -37,6 +37,11 @@ const config: StorybookConfig = {
           "@": projectRoot,
         },
       },
+      esbuild: {
+        ...(viteConfig.esbuild ?? {}),
+        jsx: "automatic" as const,
+        jsxImportSource: "react",
+      },
     };
     return merged;
   },
