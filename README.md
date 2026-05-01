@@ -33,31 +33,41 @@ If you only care about the components, ignore everything outside
 ## Registry contents (24 items)
 
 ### Primitives
+
 `button` · `badge` · `card` · `progress` · `separator` · `input` ·
 `tooltip` · `tabs` · `scroll-area` · `kbd`
 
 ### Tactical composites
+
 `status-badge` · `panel` · `stat-card` · `metric` · `data-list` ·
 `app-header` · `sidebar-rail`
 
 ### Charts
+
 `line-chart` (with thresholds) · `bar-chart` · `gantt-timeline`
 
 ### Maps
+
 `tactical-map` (SVG canvas — markers, polygon zones, grid, controls)
 
 ### Theme + utilities
+
 `theme` (HSL token set + JetBrains Mono / Inter) · `utils` (`cn()` helper)
 
 ### Blocks
-`dashboard-ops` — a single Foundry-style composition that uses every primitive
-above. Useful as a starting point or reference; not the point of the library.
+
+`dashboard-ops` — a single Foundry-style composition that wires the tactical
+composites (`app-header`, `sidebar-rail`, `panel`, `stat-card`, `status-badge`)
+together with `line-chart`, `gantt-timeline` and `tactical-map` into a complete
+ops layout. Useful as a starting point or reference; not the point of the
+library.
 
 ## Authoring conventions
 
 - All sources live in `registry/blacksite/{ui,charts,maps,blocks}/`.
-- Every component imports from `@/registry/blacksite/...` so the same source
-  works in this repo and after install via the shadcn CLI.
+- Inter-component imports use `@/registry/blacksite/...` so the same source
+  works in this repo and after install via the shadcn CLI; primitives that
+  don't depend on other registry items just import `@/lib/utils`.
 - Status surfaces (badges, indicators, dots) flow through the same `StatusBadge`
   status keys: `active | idle | offline | new | high | critical | compromised
   | nominal | warning | secured`.
@@ -73,7 +83,7 @@ pnpm storybook            # component playground at http://localhost:6006
 pnpm registry:build       # regenerate public/r/*.json
 pnpm typecheck
 pnpm build                # registry build + Next.js production build
-pnpm build-storybook      # static Storybook into public/storybook/
+pnpm build-storybook      # static Storybook into storybook-static/
 ```
 
 Stories are colocated next to each component as `*.stories.tsx`. They're never
@@ -97,18 +107,18 @@ is the format upstream `npx shadcn@latest add <url>` consumes.
 Tokens are HSL CSS variables in `app/globals.css` and re-published as a
 `registry:theme` item. Dark-first.
 
-| Role            | Token              | Value             |
-| --------------- | ------------------ | ----------------- |
-| Background      | `--background`     | `222 28% 6%`      |
-| Card surface    | `--card`           | `220 22% 9%`      |
-| Border          | `--border`         | `218 14% 18%`     |
-| Foreground      | `--foreground`     | `210 14% 92%`     |
-| Primary (cyan)  | `--primary`        | `174 72% 56%`     |
-| Success (teal)  | `--success`        | `162 70% 48%`     |
-| Warning (amber) | `--warning`        | `38 92% 58%`      |
-| Danger (red)    | `--danger`         | `358 78% 60%`     |
-| Info (blue)     | `--info`           | `212 90% 62%`     |
-| Gold            | `--gold`           | `42 78% 60%`      |
+| Role            | Token          | Value         |
+| --------------- | -------------- | ------------- |
+| Background      | `--background` | `222 28% 6%`  |
+| Card surface    | `--card`       | `220 22% 9%`  |
+| Border          | `--border`     | `218 14% 18%` |
+| Foreground      | `--foreground` | `210 14% 92%` |
+| Primary (cyan)  | `--primary`    | `174 72% 56%` |
+| Success (teal)  | `--success`    | `162 70% 48%` |
+| Warning (amber) | `--warning`    | `38 92% 58%`  |
+| Danger (red)    | `--danger`     | `358 78% 60%` |
+| Info (blue)     | `--info`       | `212 90% 62%` |
+| Gold            | `--gold`       | `42 78% 60%`  |
 
 ## License
 
