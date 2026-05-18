@@ -29,7 +29,7 @@ export const ToneMatrix: Story = {
     <div className="flex flex-col gap-3">
       {(["soft", "solid", "outline"] as const).map((variant) => (
         <div key={variant} className="flex items-center gap-2">
-          <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted w-16">
+          <span className="text-mono text-foreground-muted w-16 text-[10px] tracking-[0.1em] uppercase">
             {variant}
           </span>
           {(["neutral", "primary", "success", "warning", "danger", "info", "gold"] as const).map(

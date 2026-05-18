@@ -46,20 +46,18 @@ const AppHeader = React.forwardRef<HTMLElement, AppHeaderProps>(
       <header
         ref={ref}
         className={cn(
-          "flex h-10 items-center gap-3 border-b border-border",
-          "bg-background-elevated px-2 text-foreground",
+          "border-border flex h-10 items-center gap-3 border-b",
+          "bg-background-elevated text-foreground px-2",
           className,
         )}
         {...props}
       >
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex min-w-0 items-center gap-2">
           {brand}
           {(title || subtitle) && (
-            <h1 className="text-mono text-[11px] uppercase tracking-[0.1em] text-foreground truncate">
+            <h1 className="text-mono text-foreground truncate text-[11px] tracking-[0.1em] uppercase">
               {title}
-              {subtitle && (
-                <span className="text-foreground-subtle"> — {subtitle}</span>
-              )}
+              {subtitle && <span className="text-foreground-subtle"> — {subtitle}</span>}
             </h1>
           )}
         </div>
@@ -70,18 +68,18 @@ const AppHeader = React.forwardRef<HTMLElement, AppHeaderProps>(
           {user && (
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-sm border border-border px-2 h-7 text-mono text-[11px] uppercase tracking-[0.06em] hover:border-border-strong"
+              className="border-border text-mono hover:border-border-strong flex h-7 items-center gap-1.5 rounded-sm border px-2 text-[11px] tracking-[0.06em] uppercase"
             >
-              <span className="size-4 rounded-full bg-foreground/10 grid place-items-center text-[9px]">
+              <span className="bg-foreground/10 grid size-4 place-items-center rounded-full text-[9px]">
                 {user.name.slice(0, 1).toUpperCase()}
               </span>
-              <span className="truncate max-w-[120px]">{user.name}</span>
+              <span className="max-w-[120px] truncate">{user.name}</span>
             </button>
           )}
 
           {status && (
-            <div className="flex items-center gap-1.5 px-2 h-7 rounded-sm border border-border">
-              <span className="text-mono text-[10px] uppercase tracking-[0.08em] text-foreground-muted">
+            <div className="border-border flex h-7 items-center gap-1.5 rounded-sm border px-2">
+              <span className="text-mono text-foreground-muted text-[10px] tracking-[0.08em] uppercase">
                 Status
               </span>
               <StatusBadge status={status}>{statusLabel}</StatusBadge>
@@ -91,39 +89,47 @@ const AppHeader = React.forwardRef<HTMLElement, AppHeaderProps>(
           {region && (
             <button
               type="button"
-              className="flex items-center gap-1.5 rounded-sm border border-border px-2 h-7 text-mono text-[11px] uppercase tracking-[0.06em] hover:border-border-strong"
+              className="border-border text-mono hover:border-border-strong flex h-7 items-center gap-1.5 rounded-sm border px-2 text-[11px] tracking-[0.06em] uppercase"
             >
-              <Globe className="size-3.5 text-foreground-muted" />
+              <Globe className="text-foreground-muted size-3.5" />
               <span>{region}</span>
-              <ChevronDown className="size-3 text-foreground-subtle" />
+              <ChevronDown className="text-foreground-subtle size-3" />
             </button>
           )}
 
           {actions}
 
           {windowControls && (
-            <div className="flex items-center gap-0.5 ml-1">
+            <div className="ml-1 flex items-center gap-0.5">
               <button
+                type="button"
                 aria-label="Help"
-                className="size-7 grid place-items-center rounded-sm hover:bg-accent text-foreground-muted hover:text-foreground"
+                disabled
+                className="hover:bg-accent text-foreground-muted hover:text-foreground grid size-7 place-items-center rounded-sm disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <HelpCircle className="size-3.5" />
               </button>
               <button
+                type="button"
                 aria-label="Minimise"
-                className="size-7 grid place-items-center rounded-sm hover:bg-accent text-foreground-muted hover:text-foreground"
+                disabled
+                className="hover:bg-accent text-foreground-muted hover:text-foreground grid size-7 place-items-center rounded-sm disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Minimize2 className="size-3.5" />
               </button>
               <button
+                type="button"
                 aria-label="Maximise"
-                className="size-7 grid place-items-center rounded-sm hover:bg-accent text-foreground-muted hover:text-foreground"
+                disabled
+                className="hover:bg-accent text-foreground-muted hover:text-foreground grid size-7 place-items-center rounded-sm disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Maximize2 className="size-3.5" />
               </button>
               <button
+                type="button"
                 aria-label="Close"
-                className="size-7 grid place-items-center rounded-sm hover:bg-danger/20 text-foreground-muted hover:text-danger"
+                disabled
+                className="hover:bg-danger/20 text-foreground-muted hover:text-danger grid size-7 place-items-center rounded-sm disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <X className="size-3.5" />
               </button>

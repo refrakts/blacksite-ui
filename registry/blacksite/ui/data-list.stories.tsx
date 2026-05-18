@@ -13,7 +13,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className="w-80 border border-border rounded-md bg-card p-3">
+      <div className="border-border bg-card w-80 rounded-md border p-3">
         <Story />
       </div>
     ),

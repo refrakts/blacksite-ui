@@ -212,8 +212,17 @@
       "title": "Line chart",
       "description": "Threshold-aware line chart with tactical alert markers.",
       "dependencies": ["recharts"],
-      "registryDependencies": ["utils", "panel"],
+      "registryDependencies": ["utils", "panel", "chart-tooltip"],
       "files": [{ "path": "registry/blacksite/charts/line-chart.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "chart-tooltip",
+      "type": "registry:ui",
+      "title": "Chart tooltip",
+      "description": "Shared tooltip primitive for Recharts-based charts.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/blacksite/charts/chart-tooltip.tsx", "type": "registry:ui" }]
     },
     {
       "name": "bar-chart",
@@ -221,7 +230,7 @@
       "title": "Bar chart",
       "description": "Stacked / grouped bar chart with mono labels.",
       "dependencies": ["recharts"],
-      "registryDependencies": ["utils", "panel"],
+      "registryDependencies": ["utils", "panel", "chart-tooltip"],
       "files": [{ "path": "registry/blacksite/charts/bar-chart.tsx", "type": "registry:ui" }]
     },
     {
@@ -257,7 +266,10 @@
         "gantt-timeline",
         "tactical-map"
       ],
-      "files": [{ "path": "registry/blacksite/blocks/dashboard-ops.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "registry/blacksite/blocks/dashboard-ops.tsx", "type": "registry:block" },
+        { "path": "registry/blacksite/blocks/dashboard-ops-data.ts", "type": "registry:block" }
+      ]
     }
   ]
 }

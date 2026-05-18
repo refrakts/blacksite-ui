@@ -70,7 +70,7 @@ library.
   don't depend on other registry items just import `@/lib/utils`.
 - Status surfaces (badges, indicators, dots) flow through the same `StatusBadge`
   status keys: `active | idle | offline | new | high | critical | compromised
-  | nominal | warning | secured`.
+| nominal | warning | secured`.
 - Mono is reserved for labels / axis ticks / kbd / codes. Sans for body + values.
 - Charts and maps are pure React; no theme provider, no global state.
 

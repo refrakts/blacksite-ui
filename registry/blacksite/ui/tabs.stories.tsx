@@ -27,16 +27,16 @@ export const Default: Story = {
         <TabsTrigger value="logs">Logs</TabsTrigger>
         <TabsTrigger value="settings">Settings</TabsTrigger>
       </TabsList>
-      <TabsContent value="overview" className="text-sm text-foreground-muted">
+      <TabsContent value="overview" className="text-foreground-muted text-sm">
         Operational summary and KPIs.
       </TabsContent>
-      <TabsContent value="ontology" className="text-sm text-foreground-muted">
+      <TabsContent value="ontology" className="text-foreground-muted text-sm">
         Object types, properties, and links.
       </TabsContent>
-      <TabsContent value="logs" className="text-sm text-foreground-muted">
+      <TabsContent value="logs" className="text-foreground-muted text-sm">
         Audit trail of operator actions.
       </TabsContent>
-      <TabsContent value="settings" className="text-sm text-foreground-muted">
+      <TabsContent value="settings" className="text-foreground-muted text-sm">
         Workspace configuration.
       </TabsContent>
     </Tabs>

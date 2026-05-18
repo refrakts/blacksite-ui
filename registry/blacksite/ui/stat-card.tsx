@@ -26,51 +26,53 @@ const valueToneClass: Record<NonNullable<StatCardProps["valueTone"]>, string> = 
   gold: "text-gold",
 };
 
-const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
-  (
-    {
-      className,
-      label,
-      value,
-      status,
-      statusLabel,
-      progress,
-      progressTone = "primary",
-      valueTone = "default",
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "flex flex-col gap-2 rounded-md border border-border bg-card px-3 py-2.5",
-          "shadow-[var(--shadow-panel)]",
-          className,
-        )}
-        {...props}
-      >
-        <div className="flex items-start justify-between gap-2">
-          <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted truncate">
-            {label}
-          </span>
-          {status && <StatusBadge status={status}>{statusLabel}</StatusBadge>}
-        </div>
+const StatCard = React.memo(
+  React.forwardRef<HTMLDivElement, StatCardProps>(
+    (
+      {
+        className,
+        label,
+        value,
+        status,
+        statusLabel,
+        progress,
+        progressTone = "primary",
+        valueTone = "default",
+        ...props
+      },
+      ref,
+    ) => {
+      return (
         <div
+          ref={ref}
           className={cn(
-            "text-xl font-semibold tracking-tight leading-tight",
-            valueToneClass[valueTone],
+            "border-border bg-card flex flex-col gap-2 rounded-md border px-3 py-2.5",
+            "shadow-[var(--shadow-panel)]",
+            className,
           )}
+          {...props}
         >
-          {value}
+          <div className="flex items-start justify-between gap-2">
+            <span className="text-mono text-foreground-muted truncate text-[10px] tracking-[0.1em] uppercase">
+              {label}
+            </span>
+            {status && <StatusBadge status={status}>{statusLabel}</StatusBadge>}
+          </div>
+          <div
+            className={cn(
+              "text-xl leading-tight font-semibold tracking-tight",
+              valueToneClass[valueTone],
+            )}
+          >
+            {value}
+          </div>
+          {typeof progress === "number" && (
+            <Progress value={clamp(progress, 0, 100)} tone={progressTone} size="xs" />
+          )}
         </div>
-        {typeof progress === "number" && (
-          <Progress value={clamp(progress, 0, 100)} tone={progressTone} size="xs" />
-        )}
-      </div>
-    );
-  },
+      );
+    },
+  ),
 );
 StatCard.displayName = "StatCard";
 

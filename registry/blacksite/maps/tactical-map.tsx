@@ -73,7 +73,7 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
       <div
         ref={ref}
         className={cn(
-          "relative w-full overflow-hidden rounded-md border border-border bg-background-overlay",
+          "border-border bg-background-overlay relative w-full overflow-hidden rounded-md border",
           grid === "fine" && "bg-grid-fine",
           grid === "coarse" && "bg-grid",
           className,
@@ -84,7 +84,7 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
         {/* Subtle radial gradient lighting */}
         <div
           aria-hidden
-          className="absolute inset-0 pointer-events-none"
+          className="pointer-events-none absolute inset-0"
           style={{
             background:
               "radial-gradient(ellipse at 30% 30%, hsl(var(--primary) / 0.18), transparent 65%), radial-gradient(ellipse at 70% 80%, hsl(var(--info) / 0.1), transparent 60%)",
@@ -129,7 +129,7 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
               style={{ left: `${cx * 100}%`, top: `${cy * 100}%` }}
             >
               <span
-                className="text-mono text-[10px] uppercase tracking-[0.1em] px-1 py-0.5 rounded-[2px] border bg-background/80"
+                className="text-mono bg-background/80 rounded-[2px] border px-1 py-0.5 text-[10px] tracking-[0.1em] uppercase"
                 style={{ color, borderColor: color }}
               >
                 {zone.label}
@@ -145,7 +145,7 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
 
         {/* Caption */}
         {caption && (
-          <div className="absolute top-2 left-2 text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted bg-background/60 border border-border rounded-sm px-1.5 py-0.5 backdrop-blur-sm">
+          <div className="text-mono text-foreground-muted bg-background/60 border-border absolute top-2 left-2 rounded-sm border px-1.5 py-0.5 text-[10px] tracking-[0.1em] uppercase backdrop-blur-sm">
             {caption}
           </div>
         )}
@@ -170,18 +170,13 @@ const TacticalMap = React.forwardRef<HTMLDivElement, TacticalMapProps>(
 );
 TacticalMap.displayName = "TacticalMap";
 
-function MapButton({
-  children,
-  ariaLabel,
-}: {
-  children: React.ReactNode;
-  ariaLabel: string;
-}) {
+function MapButton({ children, ariaLabel }: { children: React.ReactNode; ariaLabel: string }) {
   return (
     <button
       type="button"
       aria-label={ariaLabel}
-      className="size-6 grid place-items-center rounded-sm border border-border bg-background/80 text-foreground-muted hover:text-foreground hover:border-border-strong backdrop-blur-sm"
+      disabled
+      className="border-border bg-background/80 text-foreground-muted hover:text-foreground hover:border-border-strong grid size-6 place-items-center rounded-sm border backdrop-blur-sm disabled:cursor-not-allowed disabled:opacity-50"
     >
       {children}
     </button>
@@ -200,7 +195,7 @@ function Marker({ marker }: { marker: MapMarker }) {
       <div className="flex flex-col items-center gap-1">
         {shape === "pin" && (
           <span
-            className="grid place-items-center size-5 rounded-full border-2 bg-background"
+            className="bg-background grid size-5 place-items-center rounded-full border-2"
             style={{ borderColor: color, color }}
           >
             <MapPin className="size-3" />
@@ -217,11 +212,11 @@ function Marker({ marker }: { marker: MapMarker }) {
           />
         )}
         {shape === "square" && (
-          <span className="size-3 border-2 rotate-45" style={{ borderColor: color }} />
+          <span className="size-3 rotate-45 border-2" style={{ borderColor: color }} />
         )}
         {marker.label && (
           <span
-            className="text-mono text-[10px] uppercase tracking-[0.08em] px-1 py-0.5 rounded-[2px] border bg-background/80 whitespace-nowrap"
+            className="text-mono bg-background/80 rounded-[2px] border px-1 py-0.5 text-[10px] tracking-[0.08em] whitespace-nowrap uppercase"
             style={{ color, borderColor: color }}
           >
             {marker.label}

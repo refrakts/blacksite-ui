@@ -45,8 +45,8 @@ const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
       <section
         ref={ref}
         className={cn(
-          "relative flex flex-col rounded-md border border-border bg-card text-card-foreground",
-          "shadow-[var(--shadow-panel)] overflow-hidden",
+          "border-border bg-card text-card-foreground relative flex flex-col rounded-md border",
+          "overflow-hidden shadow-[var(--shadow-panel)]",
           className,
         )}
         {...props}
@@ -54,17 +54,15 @@ const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
         {(title || actions || status || closable) && (
           <header
             className={cn(
-              "flex items-center justify-between gap-3 border-b border-border",
+              "border-border flex items-center justify-between gap-3 border-b",
               density === "compact" ? "h-8 px-2.5" : "h-9 px-3",
             )}
           >
-            <div className="flex items-center gap-2 min-w-0">
+            <div className="flex min-w-0 items-center gap-2">
               {title && (
-                <h3 className="text-mono text-[11px] uppercase tracking-[0.1em] text-foreground-muted truncate">
+                <h3 className="text-mono text-foreground-muted truncate text-[11px] tracking-[0.1em] uppercase">
                   {title}
-                  {subtitle && (
-                    <span className="text-foreground-subtle"> / {subtitle}</span>
-                  )}
+                  {subtitle && <span className="text-foreground-subtle"> / {subtitle}</span>}
                 </h3>
               )}
             </div>
@@ -84,7 +82,7 @@ const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
             </div>
           </header>
         )}
-        <div className={cn("flex-1 min-h-0", !bleed && (density === "compact" ? "p-2.5" : "p-3"))}>
+        <div className={cn("min-h-0 flex-1", !bleed && (density === "compact" ? "p-2.5" : "p-3"))}>
           {children}
         </div>
       </section>

@@ -49,14 +49,13 @@ const dotColor: Record<string, string> = {
 };
 
 export interface StatusBadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof statusBadgeVariants> {
+  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof statusBadgeVariants> {
   /** Show a leading dot indicator. */
   dot?: boolean;
   children?: React.ReactNode;
 }
 
-function StatusBadge({
+const StatusBadge = React.memo(function StatusBadge({
   className,
   status = "active",
   pulse,
@@ -72,10 +71,7 @@ function StatusBadge({
           <span className={cn("absolute inset-0 rounded-full", dotColor[key])} />
           {pulse && (
             <span
-              className={cn(
-                "absolute inset-0 rounded-full animate-ping opacity-60",
-                dotColor[key],
-              )}
+              className={cn("absolute inset-0 animate-ping rounded-full opacity-60", dotColor[key])}
             />
           )}
         </span>
@@ -83,6 +79,6 @@ function StatusBadge({
       <span>{children ?? key.toUpperCase()}</span>
     </span>
   );
-}
+});
 
 export { StatusBadge, statusBadgeVariants };

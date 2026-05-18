@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-svh bg-background font-sans antialiased">{children}</body>
+      <body className="bg-background min-h-svh font-sans antialiased">{children}</body>
     </html>
   );
 }

@@ -35,7 +35,7 @@ const SidebarRail = React.forwardRef<HTMLElement, SidebarRailProps>(
           ref={ref}
           aria-label="Primary"
           className={cn(
-            "flex w-12 flex-col items-center gap-1 border-r border-border bg-background-elevated py-2",
+            "border-border bg-background-elevated flex w-12 flex-col items-center gap-1 border-r py-2",
             className,
           )}
           {...props}
@@ -100,19 +100,19 @@ function RailButton({
           onClick={onClick}
           disabled={item.disabled}
           className={cn(
-            "relative size-8 grid place-items-center rounded-sm",
+            "relative grid size-8 place-items-center rounded-sm",
             "text-foreground-muted hover:text-foreground hover:bg-accent",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-            "transition-colors disabled:opacity-40 disabled:cursor-not-allowed",
+            "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-none",
+            "transition-colors disabled:cursor-not-allowed disabled:opacity-40",
             active && "text-primary bg-primary/10",
           )}
         >
           {active && (
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-0.5 bg-primary rounded-r-sm" />
+            <span className="bg-primary absolute top-1/2 left-0 h-4 w-0.5 -translate-y-1/2 rounded-r-sm" />
           )}
           <Icon className="size-4" />
           {item.badge !== undefined && (
-            <span className="absolute -top-0.5 -right-0.5 grid place-items-center min-w-3 h-3 px-1 rounded-full bg-danger text-[9px] font-semibold text-danger-foreground">
+            <span className="bg-danger text-danger-foreground absolute -top-0.5 -right-0.5 grid h-3 min-w-3 place-items-center rounded-full px-1 text-[9px] font-semibold">
               {item.badge}
             </span>
           )}

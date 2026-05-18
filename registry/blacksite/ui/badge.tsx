@@ -27,10 +27,26 @@ const badgeVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: "solid", tone: "neutral", class: "bg-foreground/90 text-background border-foreground/90" },
-      { variant: "solid", tone: "primary", class: "bg-primary text-primary-foreground border-primary" },
-      { variant: "solid", tone: "success", class: "bg-success text-success-foreground border-success" },
-      { variant: "solid", tone: "warning", class: "bg-warning text-warning-foreground border-warning" },
+      {
+        variant: "solid",
+        tone: "neutral",
+        class: "bg-foreground/90 text-background border-foreground/90",
+      },
+      {
+        variant: "solid",
+        tone: "primary",
+        class: "bg-primary text-primary-foreground border-primary",
+      },
+      {
+        variant: "solid",
+        tone: "success",
+        class: "bg-success text-success-foreground border-success",
+      },
+      {
+        variant: "solid",
+        tone: "warning",
+        class: "bg-warning text-warning-foreground border-warning",
+      },
       { variant: "solid", tone: "danger", class: "bg-danger text-danger-foreground border-danger" },
       { variant: "solid", tone: "info", class: "bg-info text-info-foreground border-info" },
       { variant: "solid", tone: "gold", class: "bg-gold text-gold-foreground border-gold" },
@@ -43,11 +59,10 @@ const badgeVariants = cva(
 );
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof badgeVariants> {}
+  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
 
-function Badge({ className, tone, variant, ...props }: BadgeProps) {
+const Badge = React.memo(function Badge({ className, tone, variant, ...props }: BadgeProps) {
   return <span className={cn(badgeVariants({ tone, variant }), className)} {...props} />;
-}
+});
 
 export { Badge, badgeVariants };

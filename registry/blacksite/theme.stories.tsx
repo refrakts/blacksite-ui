@@ -29,14 +29,14 @@ const accents = [
 
 function Swatch({ token, role }: { token: string; role: string }) {
   return (
-    <div className="flex items-center gap-3 rounded-md border border-border bg-card p-3">
+    <div className="border-border bg-card flex items-center gap-3 rounded-md border p-3">
       <span
-        className="size-10 rounded-sm border border-border-strong shrink-0"
+        className="border-border-strong size-10 shrink-0 rounded-sm border"
         style={{ background: `hsl(var(${token}))` }}
       />
       <div className="flex flex-col">
-        <code className="text-mono text-[12px] text-foreground">{token}</code>
-        <span className="text-mono text-[10px] uppercase tracking-[0.08em] text-foreground-muted">
+        <code className="text-mono text-foreground text-[12px]">{token}</code>
+        <span className="text-mono text-foreground-muted text-[10px] tracking-[0.08em] uppercase">
           {role}
         </span>
       </div>
@@ -46,9 +46,9 @@ function Swatch({ token, role }: { token: string; role: string }) {
 
 export const Palette: Story = {
   render: () => (
-    <div className="flex flex-col gap-6 max-w-3xl">
+    <div className="flex max-w-3xl flex-col gap-6">
       <div>
-        <h3 className="text-mono text-[11px] uppercase tracking-[0.12em] text-foreground-muted mb-3">
+        <h3 className="text-mono text-foreground-muted mb-3 text-[11px] tracking-[0.12em] uppercase">
           Surfaces
         </h3>
         <div className="grid grid-cols-2 gap-2">
@@ -58,7 +58,7 @@ export const Palette: Story = {
         </div>
       </div>
       <div>
-        <h3 className="text-mono text-[11px] uppercase tracking-[0.12em] text-foreground-muted mb-3">
+        <h3 className="text-mono text-foreground-muted mb-3 text-[11px] tracking-[0.12em] uppercase">
           Accents & status
         </h3>
         <div className="grid grid-cols-2 gap-2">
@@ -73,25 +73,27 @@ export const Palette: Story = {
 
 export const Typography: Story = {
   render: () => (
-    <div className="flex flex-col gap-6 max-w-3xl">
-      <section className="rounded-md border border-border bg-card p-4">
-        <h3 className="text-mono text-[11px] uppercase tracking-[0.12em] text-foreground-muted mb-3">
+    <div className="flex max-w-3xl flex-col gap-6">
+      <section className="border-border bg-card rounded-md border p-4">
+        <h3 className="text-mono text-foreground-muted mb-3 text-[11px] tracking-[0.12em] uppercase">
           Display / sans
         </h3>
         <div className="space-y-1">
           <p className="text-4xl font-semibold tracking-tight">SENTINEL OPS</p>
           <p className="text-2xl font-semibold tracking-tight">Operation FOUNDRY</p>
           <p className="text-base">Body text — Inter, regular weight.</p>
-          <p className="text-sm text-foreground-muted">Muted text — for secondary copy.</p>
+          <p className="text-foreground-muted text-sm">Muted text — for secondary copy.</p>
         </div>
       </section>
-      <section className="rounded-md border border-border bg-card p-4">
-        <h3 className="text-mono text-[11px] uppercase tracking-[0.12em] text-foreground-muted mb-3">
+      <section className="border-border bg-card rounded-md border p-4">
+        <h3 className="text-mono text-foreground-muted mb-3 text-[11px] tracking-[0.12em] uppercase">
           Mono / labels
         </h3>
         <div className="space-y-1">
-          <p className="text-mono text-[11px] uppercase tracking-[0.1em]">ASSET DEPLOYMENT STATUS</p>
-          <p className="text-mono text-[11px] uppercase tracking-[0.1em] text-foreground-muted">
+          <p className="text-mono text-[11px] tracking-[0.1em] uppercase">
+            ASSET DEPLOYMENT STATUS
+          </p>
+          <p className="text-mono text-foreground-muted text-[11px] tracking-[0.1em] uppercase">
             SECTOR C-3 — AOR
           </p>
           <p className="text-mono text-[12px]">GRID-1734-A2 · 04:21Z</p>

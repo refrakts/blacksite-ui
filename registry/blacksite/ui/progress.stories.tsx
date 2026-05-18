@@ -35,10 +35,10 @@ export const Danger: Story = { args: { tone: "danger", value: 35 } };
 export const ToneStack: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="space-y-3 w-72">
+    <div className="w-72 space-y-3">
       {(["primary", "success", "warning", "danger", "info", "gold"] as const).map((tone, i) => (
         <div key={tone} className="space-y-1">
-          <div className="flex items-center justify-between text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted">
+          <div className="text-mono text-foreground-muted flex items-center justify-between text-[10px] tracking-[0.1em] uppercase">
             <span>{tone}</span>
             <span>{30 + i * 12}%</span>
           </div>

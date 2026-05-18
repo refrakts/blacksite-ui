@@ -12,7 +12,7 @@ export default function OpsDashboardPreviewPage() {
     <div className="relative h-svh">
       <Link
         href="/"
-        className="fixed top-3 left-3 z-50 inline-flex items-center gap-1.5 rounded-sm border border-border bg-background-elevated/80 px-2 py-1 text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted hover:text-foreground hover:border-border-strong backdrop-blur-sm"
+        className="border-border bg-background-elevated/80 text-mono text-foreground-muted hover:text-foreground hover:border-border-strong fixed top-3 left-3 z-50 inline-flex items-center gap-1.5 rounded-sm border px-2 py-1 text-[10px] tracking-[0.1em] uppercase backdrop-blur-sm"
       >
         <ArrowLeft className="size-3" />
         Back to library

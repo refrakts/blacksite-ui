@@ -15,7 +15,7 @@ export interface MetricProps extends React.HTMLAttributes<HTMLDivElement> {
   hint?: React.ReactNode;
 }
 
-function Metric({
+const Metric = React.memo(function Metric({
   className,
   label,
   value,
@@ -30,29 +30,29 @@ function Metric({
   const tone =
     sign === 0
       ? "text-foreground-muted"
-      : (sign > 0) !== invertDelta
+      : sign > 0 !== invertDelta
         ? "text-success"
         : "text-danger";
   const Arrow = sign === 0 ? ArrowRight : sign > 0 ? ArrowUpRight : ArrowDownRight;
 
   return (
     <div className={cn("flex flex-col gap-1", className)} {...props}>
-      <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted">
+      <span className="text-mono text-foreground-muted text-[10px] tracking-[0.1em] uppercase">
         {label}
       </span>
       <div className="flex items-baseline gap-2">
-        <span className="text-xl font-semibold tracking-tight leading-none">{value}</span>
+        <span className="text-xl leading-none font-semibold tracking-tight">{value}</span>
         {hasDelta && (
-          <span className={cn("inline-flex items-center gap-0.5 text-mono text-[11px]", tone)}>
+          <span className={cn("text-mono inline-flex items-center gap-0.5 text-[11px]", tone)}>
             <Arrow className="size-3" />
             {Math.abs(delta!)}
             {deltaUnit === "%" ? "%" : ""}
           </span>
         )}
       </div>
-      {hint && <span className="text-mono text-[10px] text-foreground-subtle">{hint}</span>}
+      {hint && <span className="text-mono text-foreground-subtle text-[10px]">{hint}</span>}
     </div>
   );
-}
+});
 
 export { Metric };

@@ -13,6 +13,7 @@ import {
 } from "recharts";
 
 import { cn } from "@/lib/utils";
+import { ChartTooltip } from "./chart-tooltip";
 
 export interface LineChartSeries {
   key: string;
@@ -54,30 +55,6 @@ const DEFAULT_COLORS = [
   "var(--color-chart-5)",
 ];
 
-function ChartTooltip({ active, payload, label }: any) {
-  if (!active || !payload?.length) return null;
-  return (
-    <div className="rounded-sm border border-border-strong bg-popover px-2 py-1.5 shadow-[var(--shadow-panel)]">
-      <div className="text-mono text-[10px] uppercase tracking-[0.08em] text-foreground-muted">
-        {label}
-      </div>
-      <div className="flex flex-col gap-0.5 mt-1">
-        {payload.map((entry: any) => (
-          <div key={entry.dataKey} className="flex items-center gap-1.5">
-            <span
-              className="size-1.5 rounded-full"
-              style={{ backgroundColor: entry.color }}
-            />
-            <span className="text-mono text-[11px] text-foreground">
-              {entry.name}: <span className="text-foreground-muted">{entry.value}</span>
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
   (
     {
@@ -102,7 +79,11 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
             <XAxis
               dataKey={xKey}
               stroke="hsl(var(--foreground-subtle))"
-              tick={{ fontFamily: "var(--font-mono)", fontSize: 10, fill: "hsl(var(--foreground-muted))" }}
+              tick={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                fill: "hsl(var(--foreground-muted))",
+              }}
               tickLine={false}
               axisLine={{ stroke: "hsl(var(--border))" }}
               label={
@@ -112,14 +93,23 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
                       position: "insideBottom",
                       offset: -8,
                       fill: "hsl(var(--foreground-muted))",
-                      style: { fontFamily: "var(--font-mono)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em" },
+                      style: {
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 10,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                      },
                     }
                   : undefined
               }
             />
             <YAxis
               stroke="hsl(var(--foreground-subtle))"
-              tick={{ fontFamily: "var(--font-mono)", fontSize: 10, fill: "hsl(var(--foreground-muted))" }}
+              tick={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                fill: "hsl(var(--foreground-muted))",
+              }}
               tickLine={false}
               axisLine={{ stroke: "hsl(var(--border))" }}
               width={40}
@@ -131,7 +121,12 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
                       position: "insideLeft",
                       offset: 12,
                       fill: "hsl(var(--foreground-muted))",
-                      style: { fontFamily: "var(--font-mono)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em" },
+                      style: {
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 10,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                      },
                     }
                   : undefined
               }
@@ -170,7 +165,11 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
                 stroke={s.color ?? DEFAULT_COLORS[i % DEFAULT_COLORS.length]}
                 strokeDasharray={s.strokeDasharray}
                 strokeWidth={1.5}
-                dot={{ r: 2, strokeWidth: 0, fill: s.color ?? DEFAULT_COLORS[i % DEFAULT_COLORS.length] }}
+                dot={{
+                  r: 2,
+                  strokeWidth: 0,
+                  fill: s.color ?? DEFAULT_COLORS[i % DEFAULT_COLORS.length],
+                }}
                 activeDot={{ r: 3 }}
               />
             ))}

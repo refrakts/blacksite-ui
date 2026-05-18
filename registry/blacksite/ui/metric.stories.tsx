@@ -32,7 +32,7 @@ export const Flat: Story = { args: { label: "Errors / hr", value: "2", delta: 0 
 export const Row: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="grid grid-cols-4 gap-6 w-[720px] px-4 py-4 border border-border rounded-md bg-card">
+    <div className="border-border bg-card grid w-[720px] grid-cols-4 gap-6 rounded-md border px-4 py-4">
       <Metric label="Active drones" value="14" delta={3} deltaUnit="abs" />
       <Metric label="Latency" value="48ms" delta={-12} invertDelta />
       <Metric label="Errors / hr" value="2" delta={0} />

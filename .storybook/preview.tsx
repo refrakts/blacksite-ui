@@ -22,15 +22,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: [
-          "Overview",
-          "Theme",
-          "Primitives",
-          "Tactical",
-          "Charts",
-          "Maps",
-          "Blocks",
-        ],
+        order: ["Overview", "Theme", "Primitives", "Tactical", "Charts", "Maps", "Blocks"],
       },
     },
   },
