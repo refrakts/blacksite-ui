@@ -40,7 +40,7 @@ export const CustomLabel: Story = {
 export const AllStatuses: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-wrap items-center gap-2 max-w-xl">
+    <div className="flex max-w-xl flex-wrap items-center gap-2">
       {STATUSES.map((s) => (
         <StatusBadge key={s} status={s} />
       ))}

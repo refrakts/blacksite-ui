@@ -10,7 +10,7 @@ const meta = {
   parameters: { layout: "padded" },
   decorators: [
     (Story) => (
-      <div className="w-[720px] border border-border rounded-md bg-card overflow-hidden">
+      <div className="border-border bg-card w-[720px] overflow-hidden rounded-md border">
         <Story />
       </div>
     ),

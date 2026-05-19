@@ -38,111 +38,99 @@ const toneToBg: Record<NonNullable<GanttTask["tone"]>, string> = {
   neutral: "bg-foreground/40 border-foreground/60",
 };
 
-const GanttTimeline = React.forwardRef<HTMLDivElement, GanttTimelineProps>(
-  (
-    {
-      className,
-      columns,
-      tasks,
-      nowAt,
-      rowHeight = 28,
-      labelWidth = 160,
-      ...props
-    },
-    ref,
-  ) => {
-    const cols = Math.max(columns.length, 1);
+const GanttTimeline = React.memo(
+  React.forwardRef<HTMLDivElement, GanttTimelineProps>(
+    ({ className, columns, tasks, nowAt, rowHeight = 28, labelWidth = 160, ...props }, ref) => {
+      const cols = Math.max(columns.length, 1);
 
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "relative overflow-x-auto border-t border-border",
-          className,
-        )}
-        {...props}
-      >
-        {/* Header row */}
+      return (
         <div
-          className="grid border-b border-border bg-background-elevated/60"
-          style={{
-            gridTemplateColumns: `${labelWidth}px repeat(${cols}, minmax(72px, 1fr))`,
-          }}
+          ref={ref}
+          className={cn("border-border relative overflow-x-auto border-t", className)}
+          {...props}
         >
-          <div className="h-7" />
-          {columns.map((c) => (
-            <div
-              key={c}
-              className="h-7 border-l border-border/60 px-2 flex items-center text-mono text-[10px] uppercase tracking-[0.08em] text-foreground-muted"
-            >
-              {c}
-            </div>
-          ))}
-        </div>
-
-        {/* Body */}
-        <div
-          className="relative grid"
-          style={{
-            gridTemplateColumns: `${labelWidth}px repeat(${cols}, minmax(72px, 1fr))`,
-          }}
-        >
-          {tasks.map((task) => (
-            <React.Fragment key={task.id}>
+          {/* Header row */}
+          <div
+            className="border-border bg-background-elevated/60 grid border-b"
+            style={{
+              gridTemplateColumns: `${labelWidth}px repeat(${cols}, minmax(72px, 1fr))`,
+            }}
+          >
+            <div className="h-7" />
+            {columns.map((c) => (
               <div
-                className="border-b border-border/60 px-2 flex items-center text-mono text-[11px] uppercase tracking-[0.06em] text-foreground"
-                style={{ height: rowHeight }}
+                key={c}
+                className="border-border/60 text-mono text-foreground-muted flex h-7 items-center border-l px-2 text-[10px] tracking-[0.08em] uppercase"
               >
-                {task.label}
+                {c}
               </div>
+            ))}
+          </div>
+
+          {/* Body */}
+          <div
+            className="relative grid"
+            style={{
+              gridTemplateColumns: `${labelWidth}px repeat(${cols}, minmax(72px, 1fr))`,
+            }}
+          >
+            {tasks.map((task) => (
+              <React.Fragment key={task.id}>
+                <div
+                  className="border-border/60 text-mono text-foreground flex items-center border-b px-2 text-[11px] tracking-[0.06em] uppercase"
+                  style={{ height: rowHeight }}
+                >
+                  {task.label}
+                </div>
+                <div
+                  className="border-border/60 relative col-span-full border-b"
+                  style={{
+                    gridColumn: `2 / span ${cols}`,
+                    height: rowHeight,
+                  }}
+                >
+                  {/* Column tick lines */}
+                  <div
+                    className="absolute inset-0 grid"
+                    style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+                  >
+                    {columns.map((_, i) => (
+                      <div key={i} className="border-border/30 border-l first:border-l-0" />
+                    ))}
+                  </div>
+                  {/* Bar */}
+                  <div
+                    className={cn(
+                      "absolute top-1/2 h-4 -translate-y-1/2 rounded-[2px] border",
+                      toneToBg[task.tone ?? "primary"],
+                    )}
+                    style={{
+                      left: `${(clamp(task.start, 0, cols) / cols) * 100}%`,
+                      width: `${(Math.max(task.end - task.start, 0.25) / cols) * 100}%`,
+                    }}
+                    title={task.label}
+                  />
+                </div>
+              </React.Fragment>
+            ))}
+
+            {/* "Now" line */}
+            {typeof nowAt === "number" && (
               <div
-                className="relative col-span-full border-b border-border/60"
+                aria-hidden="true"
+                className="bg-foreground/40 pointer-events-none absolute top-0 bottom-0 w-px"
                 style={{
-                  gridColumn: `2 / span ${cols}`,
-                  height: rowHeight,
+                  left: `calc(${labelWidth}px + ((100% - ${labelWidth}px) * ${clamp(nowAt, 0, cols) / cols}))`,
                 }}
               >
-                {/* Column tick lines */}
-                <div
-                  className="absolute inset-0 grid"
-                  style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
-                >
-                  {columns.map((_, i) => (
-                    <div key={i} className="border-l border-border/30 first:border-l-0" />
-                  ))}
-                </div>
-                {/* Bar */}
-                <div
-                  className={cn(
-                    "absolute top-1/2 -translate-y-1/2 h-4 rounded-[2px] border",
-                    toneToBg[task.tone ?? "primary"],
-                  )}
-                  style={{
-                    left: `${(clamp(task.start, 0, cols) / cols) * 100}%`,
-                    width: `${(Math.max(task.end - task.start, 0.25) / cols) * 100}%`,
-                  }}
-                  title={task.label}
-                />
+                <div className="bg-foreground/70 absolute -top-1 -left-1 size-2 rounded-full" />
               </div>
-            </React.Fragment>
-          ))}
-
-          {/* "Now" line */}
-          {typeof nowAt === "number" && (
-            <div
-              aria-hidden="true"
-              className="absolute top-0 bottom-0 w-px bg-foreground/40 pointer-events-none"
-              style={{
-                left: `calc(${labelWidth}px + ((100% - ${labelWidth}px) * ${clamp(nowAt, 0, cols) / cols}))`,
-              }}
-            >
-              <div className="absolute -top-1 -left-1 size-2 rounded-full bg-foreground/70" />
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    );
-  },
+      );
+    },
+  ),
 );
 GanttTimeline.displayName = "GanttTimeline";
 

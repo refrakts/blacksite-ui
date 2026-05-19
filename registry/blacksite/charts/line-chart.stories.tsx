@@ -10,7 +10,7 @@ const meta = {
   parameters: { layout: "padded" },
   decorators: [
     (Story) => (
-      <div className="w-[640px] border border-border rounded-md bg-card p-3">
+      <div className="border-border bg-card w-[640px] rounded-md border p-3">
         <Story />
       </div>
     ),
@@ -44,9 +44,7 @@ export const ThroughputVsLatency: Story = {
     xKey: "x",
     xLabel: "Throughput (req/s)",
     yLabel: "P99 latency (ms)",
-    series: [
-      { key: "series_a", label: "Latency", color: "var(--color-chart-1)" },
-    ],
+    series: [{ key: "series_a", label: "Latency", color: "var(--color-chart-1)" }],
     thresholds: [{ value: 15, label: "Alert threshold", tone: "danger" }],
     height: 220,
     curve: "monotone",

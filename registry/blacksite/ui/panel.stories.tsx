@@ -38,9 +38,7 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     children: (
-      <p className="text-sm text-foreground-muted">
-        Sensor stream active. 12 channels online.
-      </p>
+      <p className="text-foreground-muted text-sm">Sensor stream active. 12 channels online.</p>
     ),
   },
 };
@@ -55,7 +53,7 @@ export const Bleed: Story = {
   args: {
     bleed: true,
     children: (
-      <div className="bg-grid-fine h-32 grid place-items-center text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-muted">
+      <div className="bg-grid-fine text-mono text-foreground-muted grid h-32 place-items-center text-[10px] tracking-[0.1em] uppercase">
         full-bleed canvas (e.g. map / chart)
       </div>
     ),

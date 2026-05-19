@@ -4,10 +4,10 @@ Two Vercel projects, one repo. Both point at the same GitHub repository on the
 same branch (`main` for prod). Each project overrides the build command so it
 builds only the artefact it owns.
 
-| Project          | Domain                   | Builds        | Output dir          |
-| ---------------- | ------------------------ | ------------- | ------------------- |
-| `blacksite`      | `blacksite.sh`           | Next.js docs  | `.next/` (default)  |
-| `blacksite-sb`   | `storybook.blacksite.sh` | Storybook     | `storybook-static/` |
+| Project        | Domain                   | Builds       | Output dir          |
+| -------------- | ------------------------ | ------------ | ------------------- |
+| `blacksite`    | `blacksite.sh`           | Next.js docs | `.next/` (default)  |
+| `blacksite-sb` | `storybook.blacksite.sh` | Storybook    | `storybook-static/` |
 
 The docs project links to Storybook via the `NEXT_PUBLIC_STORYBOOK_URL`
 environment variable, so the two are loosely coupled — you can swap the
@@ -28,7 +28,7 @@ Storybook URL (Chromatic, separate domain, etc.) without touching code.
    - Output directory: `.next`
 5. **Environment Variables**:
    - `NEXT_PUBLIC_STORYBOOK_URL` = `https://storybook.blacksite.sh`
-   (Add this for **Production**, **Preview**, and **Development**.)
+     (Add this for **Production**, **Preview**, and **Development**.)
 6. **Deploy**.
 
 ### Custom domain
@@ -67,11 +67,11 @@ Storybook URL (Chromatic, separate domain, etc.) without touching code.
 
 ## DNS at your registrar (summary)
 
-| Host        | Type    | Value                                    |
-| ----------- | ------- | ---------------------------------------- |
-| `@`         | A       | `76.76.21.21` (Vercel — confirm in UI)   |
-| `www`       | CNAME   | `cname.vercel-dns.com`                   |
-| `storybook` | CNAME   | `cname.vercel-dns.com`                   |
+| Host        | Type  | Value                                  |
+| ----------- | ----- | -------------------------------------- |
+| `@`         | A     | `76.76.21.21` (Vercel — confirm in UI) |
+| `www`       | CNAME | `cname.vercel-dns.com`                 |
+| `storybook` | CNAME | `cname.vercel-dns.com`                 |
 
 Vercel will surface the exact records and verify them automatically once added.
 

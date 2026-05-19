@@ -21,9 +21,9 @@ const meta = {
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (
-      <div className="flex h-[480px] border border-border rounded-md overflow-hidden bg-card">
+      <div className="border-border bg-card flex h-[480px] overflow-hidden rounded-md border">
         <Story />
-        <div className="flex-1 grid place-items-center text-mono text-[11px] uppercase tracking-[0.1em] text-foreground-muted">
+        <div className="text-mono text-foreground-muted grid flex-1 place-items-center text-[11px] tracking-[0.1em] uppercase">
           workspace
         </div>
       </div>

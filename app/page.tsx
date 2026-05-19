@@ -49,7 +49,7 @@ const sections = [
 
 export default function Home() {
   return (
-    <div className="min-h-svh bg-background">
+    <div className="bg-background min-h-svh">
       <SiteHeader />
 
       <main className="mx-auto max-w-6xl px-6 py-12">
@@ -65,10 +65,10 @@ export default function Home() {
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-between gap-2 px-1.5 py-1 rounded-sm text-sm text-foreground-muted hover:bg-accent hover:text-foreground"
+                      className="text-foreground-muted hover:bg-accent hover:text-foreground flex items-center justify-between gap-2 rounded-sm px-1.5 py-1 text-sm"
                     >
                       <span>{item.name}</span>
-                      <ArrowRight className="size-3 text-foreground-subtle" />
+                      <ArrowRight className="text-foreground-subtle size-3" />
                     </a>
                   </li>
                 ))}
@@ -79,7 +79,7 @@ export default function Home() {
 
         <section className="mt-12 grid gap-3 md:grid-cols-2">
           <Panel title="Install" subtitle="CLI" density="compact">
-            <pre className="text-mono text-[12px] leading-relaxed text-foreground bg-background-overlay rounded-sm p-3 border border-border-strong overflow-x-auto">
+            <pre className="text-mono text-foreground bg-background-overlay border-border-strong overflow-x-auto rounded-sm border p-3 text-[12px] leading-relaxed">
               <span className="text-foreground-subtle"># Add a single component</span>
               {"\n"}npx shadcn@latest add{" "}
               <span className="text-primary">https://blacksite.sh/r/stat-card.json</span>
@@ -91,7 +91,7 @@ export default function Home() {
           </Panel>
 
           <Panel title="What you get" subtitle="Source, not a runtime" density="compact">
-            <ul className="text-sm text-foreground-muted space-y-1.5 list-disc pl-5">
+            <ul className="text-foreground-muted list-disc space-y-1.5 pl-5 text-sm">
               <li>
                 Each component is copied into <code className="text-mono">@/components</code> in
                 your project — yours to edit.
@@ -107,17 +107,13 @@ export default function Home() {
         </section>
 
         <section className="mt-12">
-          <Panel
-            title="Example composition"
-            subtitle="ops-dashboard"
-            density="compact"
-          >
+          <Panel title="Example composition" subtitle="ops-dashboard" density="compact">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div className="space-y-1">
-                <p className="text-sm text-foreground">
+                <p className="text-foreground text-sm">
                   See every primitive working together in a single Foundry-style layout.
                 </p>
-                <p className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted">
+                <p className="text-mono text-foreground-muted text-[11px] tracking-[0.08em] uppercase">
                   Installable as a registry block — copy + own it.
                 </p>
               </div>
@@ -147,35 +143,35 @@ export default function Home() {
 
 function SiteHeader() {
   return (
-    <header className="border-b border-border bg-background-elevated">
-      <div className="mx-auto max-w-6xl flex h-12 items-center gap-4 px-6">
+    <header className="border-border bg-background-elevated border-b">
+      <div className="mx-auto flex h-12 max-w-6xl items-center gap-4 px-6">
         <Link href="/" className="flex items-center gap-2">
-          <div className="size-6 grid place-items-center rounded-sm border border-primary/40 bg-primary/15 text-primary text-mono text-[10px] font-bold">
+          <div className="border-primary/40 bg-primary/15 text-primary text-mono grid size-6 place-items-center rounded-sm border text-[10px] font-bold">
             B
           </div>
-          <span className="text-mono text-[11px] uppercase tracking-[0.12em] text-foreground">
+          <span className="text-mono text-foreground text-[11px] tracking-[0.12em] uppercase">
             Blacksite UI
           </span>
           <StatusBadge status="active">v0.1.0</StatusBadge>
         </Link>
-        <nav className="flex items-center gap-1 ml-2">
+        <nav className="ml-2 flex items-center gap-1">
           <a
             href={STORYBOOK_URL}
             target="_blank"
             rel="noreferrer"
-            className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
+            className="text-mono text-foreground-muted hover:text-foreground px-2 py-1 text-[11px] tracking-[0.08em] uppercase"
           >
             Storybook
           </a>
           <Link
             href="/preview/ops-dashboard"
-            className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
+            className="text-mono text-foreground-muted hover:text-foreground px-2 py-1 text-[11px] tracking-[0.08em] uppercase"
           >
             Examples
           </Link>
           <Link
             href="/docs"
-            className="text-mono text-[11px] uppercase tracking-[0.08em] text-foreground-muted hover:text-foreground px-2 py-1"
+            className="text-mono text-foreground-muted hover:text-foreground px-2 py-1 text-[11px] tracking-[0.08em] uppercase"
           >
             Docs
           </Link>
@@ -202,21 +198,21 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <div className="relative overflow-hidden rounded-md border border-border bg-card bg-grid-fine">
-      <div className="absolute inset-0 bg-scanlines pointer-events-none" />
+    <div className="border-border bg-card bg-grid-fine relative overflow-hidden rounded-md border">
+      <div className="bg-scanlines pointer-events-none absolute inset-0" />
       <div className="relative px-8 py-12">
         <div className="flex items-center gap-2">
           <StatusBadge status="active">Component library</StatusBadge>
-          <span className="text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-subtle">
+          <span className="text-mono text-foreground-subtle text-[10px] tracking-[0.1em] uppercase">
             v0.1.0 · 24 items · shadcn registry
           </span>
         </div>
-        <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-foreground mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
           A Palantir-inspired component registry,
           <br />
           shipped as <span className="text-primary">ShadCN-compatible</span> primitives.
         </h1>
-        <p className="mt-4 max-w-2xl text-foreground-muted">
+        <p className="text-foreground-muted mt-4 max-w-2xl">
           Tactical dark UI, monospace labels, status palettes, charts and maps — installable into
           your own codebase via the shadcn CLI. No runtime library. Tailwind v4 tokens. Radix
           primitives.
@@ -242,8 +238,8 @@ function Hero() {
 
 function SiteFooter() {
   return (
-    <footer className="mt-12 border-t border-border bg-background-elevated">
-      <div className="mx-auto max-w-6xl flex items-center justify-between px-6 h-10 text-mono text-[10px] uppercase tracking-[0.1em] text-foreground-subtle">
+    <footer className="border-border bg-background-elevated mt-12 border-t">
+      <div className="text-mono text-foreground-subtle mx-auto flex h-10 max-w-6xl items-center justify-between px-6 text-[10px] tracking-[0.1em] uppercase">
         <span>Blacksite UI — © {new Date().getFullYear()}</span>
         <span>Component registry · MIT</span>
       </div>

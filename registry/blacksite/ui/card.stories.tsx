@@ -20,7 +20,7 @@ export const Basic: Story = {
         <CardDescription>Patrol drone, sector C</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-foreground-muted">
+        <p className="text-foreground-muted text-sm">
           Operational. Battery 84%. Last check-in 12s ago.
         </p>
       </CardContent>
@@ -36,7 +36,7 @@ export const WithFooter: Story = {
         <CardDescription>Op SILVERFISH · 04:21Z</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-foreground-muted">
+        <p className="text-foreground-muted text-sm">
           Recon team Alpha to establish overwatch on grid 27/41 by 05:00Z.
         </p>
       </CardContent>
@@ -51,7 +51,7 @@ export const WithFooter: Story = {
 export const Grid: Story = {
   parameters: { layout: "padded" },
   render: () => (
-    <div className="grid grid-cols-3 gap-3 w-[720px]">
+    <div className="grid w-[720px] grid-cols-3 gap-3">
       {[
         { title: "Sentry-7", desc: "Sector C", body: "Operational · 84%" },
         { title: "Sentry-12", desc: "Sector D", body: "Idle · awaiting tasking" },
@@ -63,7 +63,7 @@ export const Grid: Story = {
             <CardDescription>{c.desc}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-foreground-muted">{c.body}</p>
+            <p className="text-foreground-muted text-sm">{c.body}</p>
           </CardContent>
         </Card>
       ))}

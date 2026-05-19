@@ -40,22 +40,28 @@ export const Basic: Story = {
 export const Sides: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="grid grid-cols-3 gap-8 place-items-center">
+    <div className="grid grid-cols-3 place-items-center gap-8">
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button size="icon" aria-label="Top"><Activity className="size-4" /></Button>
+          <Button size="icon" aria-label="Top">
+            <Activity className="size-4" />
+          </Button>
         </TooltipTrigger>
         <TooltipContent side="top">top</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button size="icon" aria-label="Bottom"><Bug className="size-4" /></Button>
+          <Button size="icon" aria-label="Bottom">
+            <Bug className="size-4" />
+          </Button>
         </TooltipTrigger>
         <TooltipContent side="bottom">bottom</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button size="icon" aria-label="Right"><Crosshair className="size-4" /></Button>
+          <Button size="icon" aria-label="Right">
+            <Crosshair className="size-4" />
+          </Button>
         </TooltipTrigger>
         <TooltipContent side="right">right</TooltipContent>
       </Tooltip>

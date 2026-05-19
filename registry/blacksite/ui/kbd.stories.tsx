@@ -17,7 +17,7 @@ export const Basic: Story = {};
 export const Combo: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex items-center gap-1.5 text-sm text-foreground-muted">
+    <div className="text-foreground-muted flex items-center gap-1.5 text-sm">
       <Kbd>⌘</Kbd>
       <span>+</span>
       <Kbd>K</Kbd>

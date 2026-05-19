@@ -3,183 +3,68 @@
 import * as React from "react";
 import {
   Activity,
-  BarChart3,
   Braces,
   ChevronDown,
   Clock3,
   Database,
-  GitBranch,
   Layers,
-  LayoutDashboard,
-  Map,
-  Network,
   PanelRight,
   Plus,
   Search,
   Shield,
-  SlidersHorizontal,
   Sparkles,
   Table2,
 } from "lucide-react";
 
 import { BarChart } from "@/registry/blacksite/charts/bar-chart";
-import { GanttTimeline, type GanttTask } from "@/registry/blacksite/charts/gantt-timeline";
+import { GanttTimeline } from "@/registry/blacksite/charts/gantt-timeline";
 import { LineChart } from "@/registry/blacksite/charts/line-chart";
-import { TacticalMap, type MapMarker, type MapZone } from "@/registry/blacksite/maps/tactical-map";
+import { TacticalMap } from "@/registry/blacksite/maps/tactical-map";
 import { Panel } from "@/registry/blacksite/ui/panel";
-import { SidebarRail, type SidebarRailItem } from "@/registry/blacksite/ui/sidebar-rail";
-import { StatCard } from "@/registry/blacksite/ui/stat-card";
-import { StatusBadge, type StatusBadgeProps } from "@/registry/blacksite/ui/status-badge";
+import { SidebarRail } from "@/registry/blacksite/ui/sidebar-rail";
+import { StatusBadge } from "@/registry/blacksite/ui/status-badge";
 
-const navItems: SidebarRailItem[] = [
-  { id: "home", icon: LayoutDashboard, label: "Operational picture" },
-  { id: "map", icon: Map, label: "Map" },
-  { id: "objects", icon: Network, label: "Object Explorer", badge: "18" },
-  { id: "lineage", icon: GitBranch, label: "Lineage" },
-  { id: "analytics", icon: BarChart3, label: "Quiver" },
-];
-
-const navFooter: SidebarRailItem[] = [
-  { id: "layers", icon: Layers, label: "Layer manager" },
-  { id: "filters", icon: SlidersHorizontal, label: "Filters" },
-  { id: "aip", icon: Sparkles, label: "AIP Assist", badge: "B" },
-];
-
-const objectTypes = [
-  { label: "Flight alert", count: 184, tone: "danger" },
-  { label: "Aircraft", count: 1242, tone: "info" },
-  { label: "Airport", count: 391, tone: "success" },
-  { label: "Route segment", count: 8819, tone: "gold" },
-  { label: "Maintenance event", count: 67, tone: "warning" },
-] as const;
-
-const objectTypeCountClass: Record<(typeof objectTypes)[number]["tone"], string> = {
-  danger: "text-danger",
-  info: "text-info",
-  success: "text-success",
-  gold: "text-gold",
-  warning: "text-warning",
-};
-
-const savedViews = ["Delayed departures", "Maintenance risk", "Crew impact", "Weather overlays"];
-
-const mapZones: MapZone[] = [
-  {
-    id: "weather-front",
-    label: "WX-17",
-    points: [
-      [0.1, 0.28],
-      [0.35, 0.18],
-      [0.53, 0.32],
-      [0.42, 0.55],
-      [0.16, 0.51],
-    ],
-    tone: "info",
-    variant: "dashed",
-  },
-  {
-    id: "ground-stop",
-    label: "GROUND STOP",
-    points: [
-      [0.56, 0.44],
-      [0.82, 0.48],
-      [0.78, 0.72],
-      [0.55, 0.78],
-      [0.46, 0.6],
-    ],
-    tone: "warning",
-    variant: "solid",
-  },
-];
-
-const mapMarkers: MapMarker[] = [
-  { id: "ord", label: "ORD", x: 0.54, y: 0.52, tone: "danger", status: "critical", shape: "pin" },
-  { id: "dfw", label: "DFW", x: 0.36, y: 0.71, tone: "warning", status: "high", shape: "triangle" },
-  { id: "den", label: "DEN", x: 0.28, y: 0.55, tone: "info", status: "active", shape: "square" },
-  { id: "iad", label: "IAD", x: 0.73, y: 0.58, tone: "gold", status: "new", shape: "pin" },
-  { id: "atl", label: "ATL", x: 0.62, y: 0.76, tone: "success", status: "nominal", shape: "pin" },
-];
-
-const throughputData = [
-  { x: "06:00", inbound: 82, delayed: 9, threshold: 18 },
-  { x: "07:00", inbound: 96, delayed: 14, threshold: 18 },
-  { x: "08:00", inbound: 118, delayed: 22, threshold: 18 },
-  { x: "09:00", inbound: 136, delayed: 31, threshold: 18 },
-  { x: "10:00", inbound: 142, delayed: 28, threshold: 18 },
-  { x: "11:00", inbound: 128, delayed: 19, threshold: 18 },
-];
-
-const riskDistribution = [
-  { x: "WX", open: 24, actioned: 11 },
-  { x: "MX", open: 16, actioned: 7 },
-  { x: "CREW", open: 9, actioned: 13 },
-  { x: "ATC", open: 21, actioned: 5 },
-  { x: "SEC", open: 4, actioned: 6 },
-];
-
-const timelineTasks: GanttTask[] = [
-  { id: "ingest", label: "ADS-B ingest", start: 0.2, end: 1.4, tone: "success" },
-  { id: "linking", label: "Object linking", start: 1.0, end: 2.5, tone: "info" },
-  { id: "model", label: "Delay model scoring", start: 2.2, end: 4.1, tone: "primary" },
-  { id: "review", label: "Dispatch review", start: 3.6, end: 5.0, tone: "warning" },
-  { id: "writeback", label: "Action writeback", start: 4.8, end: 6.4, tone: "gold" },
-];
-
-const alertRows: Array<{
-  id: string;
-  object: string;
-  route: string;
-  risk: string;
-  owner: string;
-  status: StatusBadgeProps["status"];
-}> = [
-  {
-    id: "FA-1842",
-    object: "DAL 2281",
-    route: "ORD → ATL",
-    risk: "Weather diversion",
-    owner: "Ops East",
-    status: "critical",
-  },
-  {
-    id: "FA-1839",
-    object: "UAL 455",
-    route: "DEN → IAD",
-    risk: "Crew legality",
-    owner: "Crew desk",
-    status: "high",
-  },
-  {
-    id: "FA-1827",
-    object: "AAL 109",
-    route: "DFW → ORD",
-    risk: "Maintenance gate",
-    owner: "Line MX",
-    status: "warning",
-  },
-  {
-    id: "FA-1811",
-    object: "SWA 884",
-    route: "ATL → DFW",
-    risk: "Slot compression",
-    owner: "ATC liaison",
-    status: "active",
-  },
-];
-
-const lineageNodes = [
-  "raw_adsb_events",
-  "flight_object",
-  "risk_features",
-  "delay_model_v7",
-  "dispatch_action",
-];
+import {
+  alertRows,
+  lineageNodes,
+  mapMarkers,
+  mapZones,
+  navFooter,
+  navItems,
+  objectTypeCountClass,
+  objectTypes,
+  riskDistribution,
+  savedViews,
+  throughputData,
+  timelineTasks,
+} from "./dashboard-ops-data";
 
 export interface DashboardOpsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 function DashboardOps({ className, ...props }: DashboardOpsProps) {
   const [activeNav, setActiveNav] = React.useState("home");
   const [selectedAlert, setSelectedAlert] = React.useState(alertRows[0]);
+
+  const lineChartSeries = React.useMemo(
+    () => [
+      { key: "inbound", label: "Inbound", color: "var(--color-chart-1)" },
+      { key: "delayed", label: "Delayed", color: "var(--color-warning)" },
+    ],
+    [],
+  );
+
+  const barChartSeries = React.useMemo(
+    () => [
+      { key: "open", label: "Open", color: "var(--color-danger)", stackId: "risk" },
+      { key: "actioned", label: "Actioned", color: "var(--color-info)", stackId: "risk" },
+    ],
+    [],
+  );
+
+  const lineChartThresholds = React.useMemo(
+    () => [{ value: 18, label: "Delay threshold", tone: "danger" as const }],
+    [],
+  );
 
   return (
     <div
@@ -277,27 +162,11 @@ function DashboardOps({ className, ...props }: DashboardOpsProps) {
                   <LineChart
                     data={throughputData}
                     xKey="x"
-                    series={[
-                      { key: "inbound", label: "Inbound", color: "var(--color-chart-1)" },
-                      { key: "delayed", label: "Delayed", color: "var(--color-warning)" },
-                    ]}
-                    thresholds={[{ value: 18, label: "Delay threshold", tone: "danger" }]}
+                    series={lineChartSeries}
+                    thresholds={lineChartThresholds}
                     height={220}
                   />
-                  <BarChart
-                    data={riskDistribution}
-                    xKey="x"
-                    series={[
-                      { key: "open", label: "Open", color: "var(--color-danger)", stackId: "risk" },
-                      {
-                        key: "actioned",
-                        label: "Actioned",
-                        color: "var(--color-info)",
-                        stackId: "risk",
-                      },
-                    ]}
-                    height={220}
-                  />
+                  <BarChart data={riskDistribution} xKey="x" series={barChartSeries} height={220} />
                 </div>
               </Panel>
             </section>
@@ -328,7 +197,7 @@ function DashboardOps({ className, ...props }: DashboardOpsProps) {
   );
 }
 
-function TopBar() {
+const TopBar = React.memo(function TopBar() {
   return (
     <header className="border-border bg-background-elevated flex h-auto shrink-0 flex-col border-b lg:h-11 lg:flex-row lg:items-center">
       <div className="flex h-11 items-center gap-2 px-3">
@@ -371,9 +240,9 @@ function TopBar() {
       </div>
     </header>
   );
-}
+});
 
-function OntologyExplorer() {
+const OntologyExplorer = React.memo(function OntologyExplorer() {
   return (
     <div className="flex h-full flex-col gap-3 p-2">
       <div className="flex items-center justify-between px-1">
@@ -436,9 +305,9 @@ function OntologyExplorer() {
       </div>
     </div>
   );
-}
+});
 
-function WorkspaceToolbar() {
+const WorkspaceToolbar = React.memo(function WorkspaceToolbar() {
   return (
     <div className="border-border bg-card flex flex-col gap-2 rounded-md border p-2 lg:col-span-2 lg:flex-row lg:items-center lg:justify-between">
       <div className="flex flex-wrap items-center gap-1.5">
@@ -462,9 +331,9 @@ function WorkspaceToolbar() {
       </div>
     </div>
   );
-}
+});
 
-function MapActions() {
+const MapActions = React.memo(function MapActions() {
   return (
     <div className="text-mono text-foreground-subtle hidden items-center gap-1.5 text-[10px] tracking-[0.08em] uppercase sm:flex">
       <span className="inline-flex items-center gap-1">
@@ -476,9 +345,13 @@ function MapActions() {
       </span>
     </div>
   );
-}
+});
 
-function SelectionPreview({ alert }: { alert: (typeof alertRows)[number] }) {
+const SelectionPreview = React.memo(function SelectionPreview({
+  alert,
+}: {
+  alert: (typeof alertRows)[number];
+}) {
   const properties = [
     ["Object RID", `ri.flight-alert.main.${alert.id.toLowerCase()}`],
     ["Route", alert.route],
@@ -527,9 +400,9 @@ function SelectionPreview({ alert }: { alert: (typeof alertRows)[number] }) {
       </div>
     </div>
   );
-}
+});
 
-function AlertTable({
+const AlertTable = React.memo(function AlertTable({
   selectedId,
   onSelect,
 }: {
@@ -541,9 +414,7 @@ function AlertTable({
       <table className="w-full min-w-[720px] border-collapse text-sm">
         <thead className="border-border bg-background-elevated text-mono text-foreground-subtle border-b text-[10px] tracking-[0.08em] uppercase">
           <tr>
-            <th className="w-8 px-2 py-2 text-left">
-              <input type="checkbox" aria-label="Select all alerts" />
-            </th>
+            <th className="w-8 px-2 py-2 text-left" aria-hidden="true" />
             <th className="px-2 py-2 text-left">RID</th>
             <th className="px-2 py-2 text-left">Object</th>
             <th className="px-2 py-2 text-left">Route</th>
@@ -556,15 +427,23 @@ function AlertTable({
           {alertRows.map((row) => (
             <tr
               key={row.id}
+              role="button"
+              tabIndex={0}
+              aria-selected={selectedId === row.id}
               className={`border-border/70 hover:bg-accent/70 cursor-pointer border-b ${selectedId === row.id ? "bg-primary/10" : ""}`}
               onClick={() => onSelect(row)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelect(row);
+                }
+              }}
             >
-              <td className="px-2 py-2">
-                <input
-                  type="checkbox"
-                  aria-label={`Select ${row.id}`}
-                  checked={selectedId === row.id}
-                  readOnly
+              <td className="px-2 py-2" aria-hidden="true">
+                <span
+                  className={`inline-block size-3 rounded-full border ${
+                    selectedId === row.id ? "bg-primary border-primary" : "border-foreground-subtle"
+                  }`}
                 />
               </td>
               <td className="text-mono text-foreground-muted px-2 py-2 text-[11px]">{row.id}</td>
@@ -581,9 +460,9 @@ function AlertTable({
       </table>
     </div>
   );
-}
+});
 
-function AipPanel({ alert }: { alert: (typeof alertRows)[number] }) {
+const AipPanel = React.memo(function AipPanel({ alert }: { alert: (typeof alertRows)[number] }) {
   return (
     <div className="text-foreground-muted space-y-3 text-sm">
       <div className="border-border bg-background flex items-start gap-2 rounded-sm border p-2">
@@ -610,9 +489,9 @@ function AipPanel({ alert }: { alert: (typeof alertRows)[number] }) {
       </div>
     </div>
   );
-}
+});
 
-function LineagePanel() {
+const LineagePanel = React.memo(function LineagePanel() {
   return (
     <div className="flex h-full min-h-[150px] items-center overflow-x-auto p-3">
       {lineageNodes.map((node, index) => (
@@ -635,6 +514,6 @@ function LineagePanel() {
       ))}
     </div>
   );
-}
+});
 
 export { DashboardOps };

@@ -68,7 +68,7 @@ export const Row: Story = {
   parameters: { controls: { disable: true }, layout: "padded" },
   decorators: [],
   render: () => (
-    <div className="grid grid-cols-4 gap-3 w-[1080px]">
+    <div className="grid w-[1080px] grid-cols-4 gap-3">
       <StatCard
         label="Asset deployment"
         value="ACTIVE"

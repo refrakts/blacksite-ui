@@ -13,12 +13,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <ScrollArea className="h-64 w-72 border border-border rounded-md bg-card p-3">
+    <ScrollArea className="border-border bg-card h-64 w-72 rounded-md border p-3">
       <div className="space-y-2">
         {Array.from({ length: 30 }).map((_, i) => (
           <div
             key={i}
-            className="text-mono text-[11px] uppercase tracking-[0.06em] text-foreground-muted"
+            className="text-mono text-foreground-muted text-[11px] tracking-[0.06em] uppercase"
           >
             [{String(i).padStart(3, "0")}] log entry · op SILVERFISH · status nominal
           </div>
